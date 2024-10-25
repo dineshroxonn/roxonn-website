@@ -6,7 +6,6 @@ import { Canvas } from '@react-three/fiber';
 import { Float, PerspectiveCamera } from '@react-three/drei';
 import Particles from 'react-particles';
 import { loadSlim } from "tsparticles-slim";
-import type { Container } from "tsparticles-engine";
 
 function Logo3D() {
   return (
