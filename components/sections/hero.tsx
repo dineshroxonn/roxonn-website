@@ -113,7 +113,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl text-white/80 mb-8"
         >
-          Building the Decentralized Future
+          Crafting Innovative Software Solutions
         </motion.p>
 
         <motion.div
@@ -123,10 +123,10 @@ export function HeroSection() {
           className="flex justify-center gap-4"
         >
           <button className="glass-panel px-8 py-3 hover-glow">
-            Explore Services
+            Our Services
           </button>
           <button className="glass-panel px-8 py-3 hover-glow">
-            Contact Us
+            Get Started
           </button>
         </motion.div>
       </motion.div>

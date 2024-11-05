@@ -19,7 +19,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold gradient-text mb-4">ROXONN</h3>
             <p className="text-white/70 mb-4">
-              Building the decentralized future through innovative blockchain solutions and cutting-edge technology.
+              Delivering innovative software solutions and exceptional development services to transform your business.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((link, index) => (
@@ -57,15 +57,15 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <address className="text-white/70 not-italic">
-              <p>123 Blockchain Avenue</p>
-              <p>Tech District</p>
+              <p>123 Tech Avenue</p>
+              <p>Innovation District</p>
               <p>contact@roxonn.com</p>
             </address>
           </div>
         </div>
 
         <div className="mt-8 text-center text-white/50 text-sm">
-          <p>© {new Date().getFullYear()} Roxonn Futuretech Pvt Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Roxonn Software Solutions. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -46,7 +46,7 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Get in Touch</h2>
-          <p className="text-xl text-white/80">Let's discuss your next blockchain project</p>
+          <p className="text-xl text-white/80">Let's discuss your software project</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

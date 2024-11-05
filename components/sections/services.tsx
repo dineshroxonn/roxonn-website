@@ -7,23 +7,23 @@ import { useInView } from 'react-intersection-observer';
 const services = [
   {
     icon: <Code2 className="w-8 h-8" />,
-    title: "Smart Contract Development",
-    description: "Custom blockchain solutions with secure, audited smart contracts for your business needs."
+    title: "Custom Software Development",
+    description: "Tailored software solutions designed to meet your unique business requirements."
   },
   {
     icon: <Shield className="w-8 h-8" />,
-    title: "Blockchain Security",
-    description: "Advanced security measures and audit services to protect your blockchain assets."
+    title: "Cloud Solutions",
+    description: "Scalable cloud infrastructure and services for modern applications."
   },
   {
     icon: <Cpu className="w-8 h-8" />,
-    title: "DeFi Solutions",
-    description: "Innovative decentralized finance solutions for modern financial services."
+    title: "Enterprise Solutions",
+    description: "Robust enterprise software to streamline your business operations."
   },
   {
     icon: <Network className="w-8 h-8" />,
-    title: "Web3 Integration",
-    description: "Seamless integration of Web3 technologies into your existing infrastructure."
+    title: "Digital Transformation",
+    description: "End-to-end digital solutions to modernize your business processes."
   }
 ];
 
@@ -44,7 +44,7 @@ export function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Our Services</h2>
-          <p className="text-xl text-white/80">Empowering the future with blockchain technology</p>
+          <p className="text-xl text-white/80">Delivering excellence in software development</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

@@ -7,17 +7,17 @@ import { Users, Target, Rocket } from 'lucide-react';
 const teamMembers = [
   {
     name: "Alex Thompson",
-    role: "Blockchain Architect",
+    role: "Technical Architect",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop"
   },
   {
     name: "Sarah Chen",
-    role: "Smart Contract Developer",
+    role: "Lead Developer",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
   },
   {
     name: "Michael Rodriguez",
-    role: "Security Specialist",
+    role: "Solutions Architect",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop"
   }
 ];
@@ -25,18 +25,18 @@ const teamMembers = [
 const values = [
   {
     icon: <Users className="w-8 h-8" />,
-    title: "Community First",
-    description: "Building technology that serves and empowers communities globally."
+    title: "Client Success",
+    description: "Building software that delivers real value and drives business growth."
   },
   {
     icon: <Target className="w-8 h-8" />,
     title: "Innovation Driven",
-    description: "Pushing the boundaries of what's possible in blockchain technology."
+    description: "Leveraging cutting-edge technologies to create powerful solutions."
   },
   {
     icon: <Rocket className="w-8 h-8" />,
-    title: "Future Focused",
-    description: "Creating solutions that shape the future of decentralized systems."
+    title: "Future Ready",
+    description: "Developing scalable solutions that evolve with your business needs."
   }
 ];
 
@@ -57,7 +57,7 @@ export function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">About Us</h2>
-          <p className="text-xl text-white/80">Pioneering the future of decentralized technology</p>
+          <p className="text-xl text-white/80">Excellence in software development and innovation</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
