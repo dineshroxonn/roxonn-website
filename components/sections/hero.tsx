@@ -6,6 +6,8 @@ import { Canvas } from '@react-three/fiber';
 import { Float, PerspectiveCamera } from '@react-three/drei';
 import Particles from 'react-particles';
 import { loadSlim } from "tsparticles-slim";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 function Logo3D() {
   return (
@@ -87,7 +89,7 @@ export function HeroSection() {
 
       <motion.div 
         style={{ y, opacity }}
-        className="relative z-10 text-center px-4"
+        className="relative z-10 text-center px-4 max-w-4xl mx-auto"
       >
         <div className="mb-8 h-64 w-64 mx-auto">
           <Canvas>
@@ -104,7 +106,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-7xl font-bold mb-6 gradient-text"
         >
-          ROXONN
+          Decentralizing Innovation
         </motion.h1>
 
         <motion.p
@@ -113,21 +115,46 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl text-white/80 mb-8"
         >
-          Crafting Innovative Software Solutions
+          Join the Future of Software with Roxonn DSO - Where Global Contributors Shape Tomorrow's Technology
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex justify-center gap-4"
+          className="flex flex-col sm:flex-row justify-center gap-4 items-center"
         >
-          <button className="glass-panel px-8 py-3 hover-glow">
-            Our Services
-          </button>
-          <button className="glass-panel px-8 py-3 hover-glow">
-            Get Started
-          </button>
+          <Link href="#governance">
+            <button className="glass-panel px-8 py-3 hover-glow w-full sm:w-auto flex items-center justify-center gap-2">
+              <span>Learn About Governance</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </Link>
+          <Link href="https://discord.gg/roxonn" target="_blank" rel="noopener noreferrer">
+            <button className="glass-panel px-8 py-3 hover-glow w-full sm:w-auto">
+              Join Our Community
+            </button>
+          </Link>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          <div className="glass-card">
+            <h3 className="text-lg font-semibold mb-2">Community Governed</h3>
+            <p className="text-white/70">Decisions driven by token holders and contributors</p>
+          </div>
+          <div className="glass-card">
+            <h3 className="text-lg font-semibold mb-2">Token Rewards</h3>
+            <p className="text-white/70">Earn tokens for your valuable contributions</p>
+          </div>
+          <div className="glass-card">
+            <h3 className="text-lg font-semibold mb-2">Global Collaboration</h3>
+            <p className="text-white/70">Work with talented developers worldwide</p>
+          </div>
         </motion.div>
       </motion.div>
 
