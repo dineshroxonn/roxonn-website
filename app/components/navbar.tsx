@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { ThemeToggle } from './theme-toggle';
+import { ThemeSwitcher } from './theme-switcher';
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -44,26 +44,29 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-medium transition-colors hover:text-primary"
+              className="text-white/80 hover:text-white transition-colors"
             >
               {item.name}
             </Link>
           ))}
-          <ThemeToggle />
+          <ThemeSwitcher />
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center space-x-4">
+          <ThemeSwitcher />
+          <button
+            className="text-white"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {/* Mobile Menu */}
         <motion.div
