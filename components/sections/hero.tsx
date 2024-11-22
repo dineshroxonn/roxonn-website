@@ -6,8 +6,8 @@ import { Canvas } from '@react-three/fiber';
 import { Float, PerspectiveCamera } from '@react-three/drei';
 import Particles from 'react-particles';
 import { loadSlim } from "tsparticles-slim";
-import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 function Logo3D() {
   return (
@@ -89,9 +89,9 @@ export function HeroSection() {
 
       <motion.div 
         style={{ y, opacity }}
-        className="relative z-10 text-center px-4 max-w-4xl mx-auto"
+        className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-24 md:pt-32"
       >
-        <div className="mb-8 h-64 w-64 mx-auto">
+        <div className="mb-12 h-64 w-64 mx-auto relative">
           <Canvas>
             <PerspectiveCamera makeDefault position={[0, 0, 5]} />
             <ambientLight intensity={0.5} />
@@ -113,7 +113,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl text-white/80 mb-8"
+          className="text-xl md:text-2xl text-white/80 mb-12"
         >
           Join the Future of Software with Roxonn DSO - Where Global Contributors Shape Tomorrow's Technology
         </motion.p>
@@ -122,7 +122,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4 items-center"
+          className="flex flex-col sm:flex-row justify-center gap-4 items-center mb-16"
         >
           <Link href="#governance">
             <button className="glass-panel px-8 py-3 hover-glow w-full sm:w-auto flex items-center justify-center gap-2">
@@ -141,7 +141,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           <div className="glass-card">
             <h3 className="text-lg font-semibold mb-2">Community Governed</h3>
