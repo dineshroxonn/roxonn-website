@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -48,11 +49,12 @@ export function Navbar() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-white/80 hover:text-white transition-colors"
+              className="text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors"
             >
               {item.name}
             </Link>
           ))}
+          <ThemeToggle />
         </div>
 
         {/* Mobile Menu Button */}
@@ -77,12 +79,15 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
+            <div className="pt-2">
+              <ThemeToggle />
+            </div>
           </div>
         </motion.div>
       </div>

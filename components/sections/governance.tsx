@@ -44,7 +44,7 @@ export function GovernanceSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Governance: Powered by Community</h2>
-          <p className="text-xl text-white/80">
+          <p className="text-xl text-black/80 dark:text-white/80">
             Participate in shaping Roxonn's future through decentralized decision-making
           </p>
         </motion.div>
@@ -61,7 +61,7 @@ export function GovernanceSection() {
               <div className="text-[#00C2FF]">{feature.icon}</div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-white/70">{feature.description}</p>
+                <p className="text-black/70 dark:text-white/70">{feature.description}</p>
               </div>
             </motion.div>
           ))}
@@ -79,19 +79,19 @@ export function GovernanceSection() {
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
                   <span className="text-[#00C2FF] font-bold">1.</span>
-                  <p className="text-white/70">Token holders can create and submit proposals for changes or improvements</p>
+                  <p className="text-black/70 dark:text-white/70">Token holders can create and submit proposals for changes or improvements</p>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-[#00C2FF] font-bold">2.</span>
-                  <p className="text-white/70">Community members vote using their ROXN tokens</p>
+                  <p className="text-black/70 dark:text-white/70">Community members vote using their ROXN tokens</p>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-[#00C2FF] font-bold">3.</span>
-                  <p className="text-white/70">Approved proposals are implemented by the community</p>
+                  <p className="text-black/70 dark:text-white/70">Approved proposals are implemented by the community</p>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-[#00C2FF] font-bold">4.</span>
-                  <p className="text-white/70">Results and implementations are transparently tracked</p>
+                  <p className="text-black/70 dark:text-white/70">Results and implementations are transparently tracked</p>
                 </li>
               </ul>
             </div>
@@ -100,15 +100,15 @@ export function GovernanceSection() {
               <div className="space-y-4">
                 <div className="glass-panel p-4">
                   <h4 className="font-semibold mb-2">Snapshot</h4>
-                  <p className="text-white/70">Off-chain voting system for proposals</p>
+                  <p className="text-black/70 dark:text-white/70">Off-chain voting system for proposals</p>
                 </div>
                 <div className="glass-panel p-4">
                   <h4 className="font-semibold mb-2">Gnosis Safe</h4>
-                  <p className="text-white/70">Multi-signature treasury management</p>
+                  <p className="text-black/70 dark:text-white/70">Multi-signature treasury management</p>
                 </div>
                 <div className="glass-panel p-4">
                   <h4 className="font-semibold mb-2">Discord</h4>
-                  <p className="text-white/70">Community discussion and coordination</p>
+                  <p className="text-black/70 dark:text-white/70">Community discussion and coordination</p>
                 </div>
               </div>
             </div>

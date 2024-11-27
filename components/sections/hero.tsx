@@ -91,7 +91,7 @@ export function HeroSection() {
         style={{ y, opacity }}
         className="relative z-10 text-center px-4 max-w-4xl mx-auto"
       >
-        <div className="mb-8 h-64 w-64 mx-auto">
+        <div className="mb-55 h-64 w-64 mx-auto">
           <Canvas>
             <PerspectiveCamera makeDefault position={[0, 0, 5]} />
             <ambientLight intensity={0.5} />
@@ -113,7 +113,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl text-white/80 mb-8"
+          className="text-xl md:text-2xl text-black/80 dark:text-white/80 mb-8"
         >
           Join the Future of Software with Roxonn DSO - Where Global Contributors Shape Tomorrow's Technology
         </motion.p>
@@ -145,15 +145,15 @@ export function HeroSection() {
         >
           <div className="glass-card">
             <h3 className="text-lg font-semibold mb-2">Community Governed</h3>
-            <p className="text-white/70">Decisions driven by token holders and contributors</p>
+            <p className="text-black/70 dark:text-white/70">Decisions driven by token holders and contributors</p>
           </div>
           <div className="glass-card">
             <h3 className="text-lg font-semibold mb-2">Token Rewards</h3>
-            <p className="text-white/70">Earn tokens for your valuable contributions</p>
+            <p className="text-black/70 dark:text-white/70">Earn tokens for your valuable contributions</p>
           </div>
           <div className="glass-card">
-            <h3 className="text-lg font-semibold mb-2">Global Collaboration</h3>
-            <p className="text-white/70">Work with talented developers worldwide</p>
+            <h3 className="text-lg font-semibold mb-2">Global Impact</h3>
+            <p className="text-black/70 dark:text-white/70">Shape the future of decentralized software</p>
           </div>
         </motion.div>
       </motion.div>

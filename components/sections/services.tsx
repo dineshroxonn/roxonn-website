@@ -64,7 +64,7 @@ export function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Contribution Areas</h2>
-          <p className="text-xl text-white/80">Choose your path and start earning through meaningful contributions</p>
+          <p className="text-xl text-black/80 dark:text-white/80">Choose your path and start earning through meaningful contributions</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -80,7 +80,7 @@ export function ServicesSection() {
                 {service.icon}
               </div>
               <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-white/70">{service.description}</p>
+              <p className="text-black/70 dark:text-white/70">{service.description}</p>
             </motion.div>
           ))}
         </div>

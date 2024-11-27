@@ -44,7 +44,7 @@ export function WhyRoxonnSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Why Choose Roxonn?</h2>
-          <p className="text-xl text-white/80">
+          <p className="text-xl text-black/80 dark:text-white/80">
             Revolutionizing the future of work through decentralization and transparency
           </p>
         </motion.div>
@@ -63,7 +63,7 @@ export function WhyRoxonnSection() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-white/70">{feature.description}</p>
+                <p className="text-black/70 dark:text-white/70">{feature.description}</p>
               </div>
             </motion.div>
           ))}
@@ -77,7 +77,7 @@ export function WhyRoxonnSection() {
         >
           <div className="glass-card max-w-3xl mx-auto">
             <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
-            <p className="text-white/70">
+            <p className="text-black/70 dark:text-white/70">
               At Roxonn, we're building more than just software - we're creating a new paradigm for how technology companies operate. Through our decentralized model, we ensure that every contributor is valued, every voice is heard, and every project delivers exceptional results.
             </p>
           </div>

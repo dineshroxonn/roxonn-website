@@ -18,7 +18,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 glass-panel p-8">
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold gradient-text mb-4">ROXONN</h3>
-            <p className="text-white/70 mb-4">
+            <p className="text-black/70 dark:text-white/70 mb-4">
               Delivering innovative software solutions and exceptional development services to transform your business.
             </p>
             <div className="flex space-x-4">
@@ -28,7 +28,7 @@ export function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/70 hover:text-white transition-colors"
+                  className="text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -39,13 +39,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4 text-black dark:text-white">Quick Links</h4>
             <ul className="space-y-2">
               {['Services', 'About', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
                     href={`#${item.toLowerCase()}`}
-                    className="text-white/70 hover:text-white transition-colors"
+                    className="text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
                   >
                     {item}
                   </Link>
@@ -55,8 +55,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
-            <address className="text-white/70 not-italic">
+            <h4 className="font-semibold mb-4 text-black dark:text-white">Contact</h4>
+            <address className="text-black/70 dark:text-white/70 not-italic">
               <p>123 Tech Avenue</p>
               <p>Innovation District</p>
               <p>contact@roxonn.com</p>
@@ -64,8 +64,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 text-center text-white/50 text-sm">
-          <p>© {new Date().getFullYear()} Roxonn Software Solutions. All rights reserved.</p>
+        <div className="mt-8 text-center text-black/50 dark:text-white/50 text-sm">
+          <p> {new Date().getFullYear()} Roxonn Software Solutions. All rights reserved.</p>
         </div>
       </div>
     </footer>

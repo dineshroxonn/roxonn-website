@@ -71,7 +71,7 @@ export function ProjectsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Active Projects</h2>
-          <p className="text-xl text-white/80">
+          <p className="text-xl text-black/80 dark:text-white/80">
             Choose from open source and enterprise projects to contribute and earn
           </p>
         </motion.div>
@@ -93,45 +93,41 @@ export function ProjectsSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 rounded-full text-sm bg-[#00C2FF]/20 border border-[#00C2FF]/30">
+                  <span className="px-3 py-1 rounded-full text-sm bg-[#00C2FF]/20 border border-[#00C2FF]/30 text-[#00C2FF]">
                     {project.type}
                   </span>
                 </div>
               </div>
 
-              <h3 className="text-2xl font-semibold mb-3">{project.name}</h3>
-              <p className="text-white/70 mb-6">{project.summary}</p>
+              <h3 className="text-2xl font-semibold mb-4">{project.name}</h3>
+              <p className="text-black/70 dark:text-white/70 mb-6">{project.summary}</p>
 
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="flex flex-wrap gap-4 mb-6">
                 {project.features.map((feature, featureIndex) => (
-                  <div
-                    key={featureIndex}
-                    className="flex items-center space-x-2 text-white/80"
-                  >
+                  <div key={featureIndex} className="flex items-center space-x-2 text-black/70 dark:text-white/70">
                     <div className="text-[#00C2FF]">{feature.icon}</div>
-                    <span className="text-sm">{feature.text}</span>
+                    <span>{feature.text}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center justify-between mb-6">
-                <div className="text-[#00C2FF]">
-                  <p className="text-sm">Reward</p>
-                  <p className="font-semibold">{project.reward}</p>
+              <div className="flex items-center justify-between pt-6 border-t border-black/10 dark:border-white/10">
+                <div>
+                  <div className="text-sm text-black/60 dark:text-white/60 mb-1">Reward</div>
+                  <div className="font-semibold text-[#00C2FF]">{project.reward}</div>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-white/70">Timeframe</p>
-                  <p className="font-semibold">{project.timeframe}</p>
+                <div>
+                  <div className="text-sm text-black/60 dark:text-white/60 mb-1">Timeline</div>
+                  <div className="font-semibold text-black/90 dark:text-white/90">{project.timeframe}</div>
                 </div>
+                <Link
+                  href={project.link}
+                  className="flex items-center space-x-2 text-[#00C2FF] hover:text-[#00C2FF]/80 transition-colors"
+                >
+                  <span>View Details</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
-
-              <Link
-                href={project.link}
-                className="inline-flex items-center space-x-2 text-[#00C2FF] hover:text-white transition-colors group"
-              >
-                <span>View Details</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </Link>
             </motion.div>
           ))}
         </div>
