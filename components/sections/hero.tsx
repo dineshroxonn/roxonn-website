@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { Float, PerspectiveCamera } from '@react-three/drei';
 import Particles from 'react-particles';
 import { loadSlim } from "tsparticles-slim";
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 
 function Logo3D() {
   return (
@@ -29,22 +30,87 @@ function Logo3D() {
   );
 }
 
-export function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
+const technicalContent = {
+  title: "Decentralizing Innovation",
+  subtitle: "Join the Future of Software with Roxonn DSO - Where Global Contributors Shape Tomorrow's Technology",
+  features: [
+    {
+      title: "Community Governed",
+      description: "Decisions driven by token holders and contributors"
+    },
+    {
+      title: "Token Rewards",
+      description: "Earn tokens for your valuable contributions"
+    },
+    {
+      title: "Global Impact",
+      description: "Shape the future of decentralized software"
+    }
+  ],
+  buttons: [
+    {
+      text: "Learn About Governance",
+      href: "#governance",
+      primary: true
+    },
+    {
+      text: "Join Our Community",
+      href: "https://discord.gg/roxonn",
+      primary: false
+    }
+  ]
+};
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+const simpleContent = {
+  title: "Earn Rewards for Your Software Skills",
+  subtitle: "Join Roxonn and get paid for helping build software. Share your programming skills, solve problems, and earn rewards for your contributions.",
+  features: [
+    {
+      title: "Simple to Start",
+      description: "Sign up with your email and start contributing right away"
+    },
+    {
+      title: "Get Paid in Points",
+      description: "Earn reward points for every approved contribution"
+    },
+    {
+      title: "Secure Rewards",
+      description: "Your points are safely stored and can be converted to rewards"
+    }
+  ],
+  buttons: [
+    {
+      text: "Start Earning Now",
+      href: "#services",
+      primary: true
+    },
+    {
+      text: "Learn How It Works",
+      href: "#services",
+      primary: false
+    }
+  ]
+};
+
+export function HeroSection() {
+  const [showTechnical, setShowTechnical] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowTechnical(prev => !prev);
+    }, 10000); // Switch every 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const particlesInit = async (engine: any) => {
     await loadSlim(engine);
   };
 
+  const currentContent = showTechnical ? technicalContent : simpleContent;
+
   return (
-    <div ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <Particles
         id="tsparticles"
         init={particlesInit}
@@ -87,10 +153,7 @@ export function HeroSection() {
         }}
       />
 
-      <motion.div 
-        style={{ y, opacity }}
-        className="relative z-10 text-center px-4 max-w-4xl mx-auto"
-      >
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div className="mb-55 h-64 w-64 mx-auto">
           <Canvas>
             <PerspectiveCamera makeDefault position={[0, 0, 5]} />
@@ -100,63 +163,54 @@ export function HeroSection() {
           </Canvas>
         </div>
 
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-bold mb-6 gradient-text"
-        >
-          Decentralizing Innovation
-        </motion.h1>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={showTechnical ? 'technical' : 'simple'}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text">
+              {currentContent.title}
+            </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl text-black/80 dark:text-white/80 mb-8"
-        >
-          Join the Future of Software with Roxonn DSO - Where Global Contributors Shape Tomorrow's Technology
-        </motion.p>
+            <p className="text-xl md:text-2xl text-black/80 dark:text-white/80 mb-8">
+              {currentContent.subtitle}
+            </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row justify-center gap-4 items-center"
-        >
-          <Link href="#governance">
-            <button className="glass-panel px-8 py-3 hover-glow w-full sm:w-auto flex items-center justify-center gap-2">
-              <span>Learn About Governance</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </Link>
-          <Link href="https://discord.gg/roxonn" target="_blank" rel="noopener noreferrer">
-            <button className="glass-panel px-8 py-3 hover-glow w-full sm:w-auto">
-              Join Our Community
-            </button>
-          </Link>
-        </motion.div>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 items-center mb-16">
+              {currentContent.buttons.map((button, index) => (
+                <Link key={index} href={button.href}>
+                  <Button 
+                    className={`glass-panel px-8 py-3 hover-glow w-full sm:w-auto flex items-center justify-center gap-2 ${
+                      button.primary ? '' : 'variant-outline'
+                    }`}
+                  >
+                    <span>{button.text}</span>
+                    {button.primary && <ArrowRight className="w-4 h-4" />}
+                  </Button>
+                </Link>
+              ))}
+            </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          <div className="glass-card">
-            <h3 className="text-lg font-semibold mb-2">Community Governed</h3>
-            <p className="text-black/70 dark:text-white/70">Decisions driven by token holders and contributors</p>
-          </div>
-          <div className="glass-card">
-            <h3 className="text-lg font-semibold mb-2">Token Rewards</h3>
-            <p className="text-black/70 dark:text-white/70">Earn tokens for your valuable contributions</p>
-          </div>
-          <div className="glass-card">
-            <h3 className="text-lg font-semibold mb-2">Global Impact</h3>
-            <p className="text-black/70 dark:text-white/70">Shape the future of decentralized software</p>
-          </div>
-        </motion.div>
-      </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {currentContent.features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="glass-card"
+                >
+                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-black/70 dark:text-white/70">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-0" />
     </div>
