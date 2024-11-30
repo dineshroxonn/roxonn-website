@@ -1,38 +1,44 @@
-import './globals.css';
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
+import { ContentVersionProvider } from '@/context/content-version';
 import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
 import { CustomCursor } from '@/components/custom-cursor';
-import { Toaster } from '@/components/ui/sonner';
+import { metadata } from './metadata';
+import { initMonitoring } from '@/lib/monitoring';
+import { validateEnv } from '@/lib/env';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Roxonn Futuretech | Building the Decentralized Future',
-  description: 'Leading the way in decentralized technology solutions and blockchain innovation.',
-};
+// Validate environment variables
+validateEnv();
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Initialize monitoring in production
+if (process.env.NODE_ENV === 'production') {
+  initMonitoring();
+}
+
+export { metadata };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={true}
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
-          <CustomCursor />
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Toaster />
+          <ContentVersionProvider>
+            <CustomCursor />
+            <div className="relative flex min-h-screen flex-col">
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </ContentVersionProvider>
         </ThemeProvider>
       </body>
     </html>
