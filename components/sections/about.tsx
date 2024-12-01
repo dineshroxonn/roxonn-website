@@ -1,49 +1,50 @@
-"use client";
+'use client';
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Users, Target, Rocket } from 'lucide-react';
+import Image from 'next/image';
 
 const teamMembers = [
   {
-    name: "Alex Thompson",
-    role: "Technical Architect",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop"
+    name: 'Alex Thompson',
+    role: 'Technical Architect',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
   },
   {
-    name: "Sarah Chen",
-    role: "Lead Developer",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
+    name: 'Sarah Chen',
+    role: 'Lead Developer',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
   },
   {
-    name: "Michael Rodriguez",
-    role: "Solutions Architect",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop"
-  }
+    name: 'Michael Rodriguez',
+    role: 'Solutions Architect',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+  },
 ];
 
 const values = [
   {
     icon: <Users className="w-8 h-8" />,
-    title: "Client Success",
-    description: "Building software that delivers real value and drives business growth."
+    title: 'Client Success',
+    description: 'Building software that delivers real value and drives business growth.',
   },
   {
     icon: <Target className="w-8 h-8" />,
-    title: "Innovation Driven",
-    description: "Leveraging cutting-edge technologies to create powerful solutions."
+    title: 'Innovation Driven',
+    description: 'Leveraging cutting-edge technologies to create powerful solutions.',
   },
   {
     icon: <Rocket className="w-8 h-8" />,
-    title: "Future Ready",
-    description: "Developing scalable solutions that evolve with your business needs."
-  }
+    title: 'Future Ready',
+    description: 'Developing scalable solutions that evolve with your business needs.',
+  },
 ];
 
 export function AboutSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   return (
@@ -57,7 +58,9 @@ export function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">About Us</h2>
-          <p className="text-xl text-black/80 dark:text-white/80">Excellence in software development and innovation</p>
+          <p className="text-xl text-black/80 dark:text-white/80">
+            Excellence in software development and innovation
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
@@ -86,9 +89,11 @@ export function AboutSection() {
               className="glass-card text-center group"
             >
               <div className="mb-4 relative overflow-hidden rounded-full w-32 h-32 mx-auto">
-                <img
+                <Image
                   src={member.image}
                   alt={member.name}
+                  width={400}
+                  height={400}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
                 />
               </div>

@@ -1,63 +1,66 @@
-"use client";
+'use client';
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight, GitPullRequest, Users, Clock, Coins } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const projects = [
   {
-    name: "DeFi Lending Protocol",
-    type: "Open Source",
-    summary: "A decentralized lending protocol enabling peer-to-peer lending with algorithmic interest rates.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500&h=300&fit=crop",
+    name: 'DeFi Lending Protocol',
+    type: 'Open Source',
+    summary:
+      'A decentralized lending protocol enabling peer-to-peer lending with algorithmic interest rates.',
+    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500&h=300&fit=crop',
     features: [
       {
         icon: <GitPullRequest className="w-5 h-5" />,
-        text: "Active Development"
+        text: 'Active Development',
       },
       {
         icon: <Users className="w-5 h-5" />,
-        text: "12 Contributors"
+        text: '12 Contributors',
       },
       {
         icon: <Coins className="w-5 h-5" />,
-        text: "Token Rewards"
-      }
+        text: 'Token Rewards',
+      },
     ],
-    reward: "2000 ROXN",
-    timeframe: "3 months",
-    link: "#"
+    reward: '2000 ROXN',
+    timeframe: '3 months',
+    link: '#',
   },
   {
-    name: "AI-Powered Analytics",
-    type: "Enterprise",
-    summary: "Building an enterprise analytics platform using machine learning for predictive insights.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
+    name: 'AI-Powered Analytics',
+    type: 'Enterprise',
+    summary:
+      'Building an enterprise analytics platform using machine learning for predictive insights.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
     features: [
       {
         icon: <GitPullRequest className="w-5 h-5" />,
-        text: "Private Repo"
+        text: 'Private Repo',
       },
       {
         icon: <Users className="w-5 h-5" />,
-        text: "8 Contributors"
+        text: '8 Contributors',
       },
       {
         icon: <Clock className="w-5 h-5" />,
-        text: "Ongoing"
-      }
+        text: 'Ongoing',
+      },
     ],
-    reward: "$5000/month",
-    timeframe: "6 months",
-    link: "#"
-  }
+    reward: '$5000/month',
+    timeframe: '6 months',
+    link: '#',
+  },
 ];
 
 export function ProjectsSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   return (
@@ -86,10 +89,12 @@ export function ProjectsSection() {
               className="glass-card group"
             >
               <div className="relative h-48 mb-6 rounded-lg overflow-hidden">
-                <img
+                <Image
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  width={400}
+                  height={300}
+                  className="w-full h-48 object-cover rounded-t-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute top-4 right-4">
@@ -104,7 +109,10 @@ export function ProjectsSection() {
 
               <div className="flex flex-wrap gap-4 mb-6">
                 {project.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-center space-x-2 text-black/70 dark:text-white/70">
+                  <div
+                    key={featureIndex}
+                    className="flex items-center space-x-2 text-black/70 dark:text-white/70"
+                  >
                     <div className="text-[#00C2FF]">{feature.icon}</div>
                     <span>{feature.text}</span>
                   </div>
@@ -118,7 +126,9 @@ export function ProjectsSection() {
                 </div>
                 <div>
                   <div className="text-sm text-black/60 dark:text-white/60 mb-1">Timeline</div>
-                  <div className="font-semibold text-black/90 dark:text-white/90">{project.timeframe}</div>
+                  <div className="font-semibold text-black/90 dark:text-white/90">
+                    {project.timeframe}
+                  </div>
                 </div>
                 <Link
                   href={project.link}
