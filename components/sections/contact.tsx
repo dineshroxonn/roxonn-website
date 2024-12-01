@@ -46,7 +46,7 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Get in Touch</h2>
-          <p className="text-xl text-white/80">Let's discuss your software project</p>
+          <p className="text-xl text-black/80 dark:text-white/80">Let's discuss your software project</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -60,7 +60,7 @@ export function ContactSection() {
               <Mail className="w-6 h-6 text-[#00C2FF]" />
               <div>
                 <h3 className="font-semibold">Email Us</h3>
-                <p className="text-white/70">contact@roxonn.com</p>
+                <p className="text-black/70 dark:text-white/70">contact@roxonn.com</p>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ export function ContactSection() {
               <MessageSquare className="w-6 h-6 text-[#00C2FF]" />
               <div>
                 <h3 className="font-semibold">Live Chat</h3>
-                <p className="text-white/70">Available 24/7</p>
+                <p className="text-black/70 dark:text-white/70">Available 24/7</p>
               </div>
             </div>
           </motion.div>
@@ -90,7 +90,7 @@ export function ContactSection() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
                 required
               />
             </div>
@@ -105,7 +105,7 @@ export function ContactSection() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
                 required
               />
             </div>
@@ -120,10 +120,12 @@ export function ContactSection() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-4 py-2 bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
                 required
               />
             </div>
+
+            <p className="text-muted-foreground">Don&apos;t hesitate to reach out!</p>
 
             <button
               type="submit"

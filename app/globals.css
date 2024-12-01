@@ -4,20 +4,20 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 98%;
     --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
+    --card: 0 0% 98%;
     --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
+    --popover: 0 0% 98%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: 0 0% 3.9%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary-foreground: 0 0% 3.9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
     --accent: 191 100% 50%;
-    --accent-foreground: 0 0% 9%;
+    --accent-foreground: 0 0% 3.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
@@ -63,7 +63,7 @@
 }
 
 .glass-panel {
-  @apply bg-black/20 backdrop-blur-lg border border-white/10 rounded-lg;
+  @apply bg-white/60 dark:bg-black/20 backdrop-blur-lg border border-black/10 dark:border-white/10 rounded-lg;
 }
 
 .gradient-text {
@@ -101,17 +101,17 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  @apply bg-black/10 dark:bg-white/10;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  @apply bg-black/20 dark:bg-white/20;
 }
 
 /* Form input styles */
 input, textarea {
-  @apply bg-white/5 border-white/10 focus:border-accent focus:ring-accent/20;
+  @apply bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 focus:border-accent focus:ring-accent/20;
 }
 
 /* Button hover effects */
@@ -124,16 +124,12 @@ button {
   @apply animate-[fadeIn_0.5s_ease-in-out];
 }
 
-.slide-up {
-  @apply animate-[slideUp_0.5s_ease-in-out];
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+/* Navigation link hover effect */
+.nav-link {
+  @apply relative text-foreground/80 hover:text-foreground transition-colors;
 }

@@ -39,7 +39,7 @@ export function PaymentSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Payment & Transparency</h2>
-          <p className="text-xl text-white/80">
+          <p className="text-xl text-black/80 dark:text-white/80">
             Fair, secure, and transparent compensation for all contributors
           </p>
         </motion.div>
@@ -57,7 +57,7 @@ export function PaymentSection() {
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-              <p className="text-white/70">{feature.description}</p>
+              <p className="text-black/70 dark:text-white/70">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -73,17 +73,17 @@ export function PaymentSection() {
               <h3 className="text-2xl font-semibold mb-6">Revenue Distribution</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span>Contributors</span>
+                  <span className="text-black/90 dark:text-white/90">Contributors</span>
                   <span className="text-[#00C2FF]">90%</span>
                 </div>
-                <div className="w-full bg-white/10 rounded-full h-2">
+                <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-2">
                   <div className="bg-[#00C2FF] h-full rounded-full" style={{ width: '90%' }} />
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>Platform Maintenance</span>
+                  <span className="text-black/90 dark:text-white/90">Platform Maintenance</span>
                   <span className="text-[#00C2FF]">10%</span>
                 </div>
-                <div className="w-full bg-white/10 rounded-full h-2">
+                <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-2">
                   <div className="bg-[#00C2FF] h-full rounded-full" style={{ width: '10%' }} />
                 </div>
               </div>
@@ -93,19 +93,19 @@ export function PaymentSection() {
               <ul className="space-y-4">
                 <li className="flex items-center space-x-2">
                   <ArrowRight className="w-5 h-5 text-[#00C2FF]" />
-                  <span>Direct Bank Transfer</span>
+                  <span className="text-black/90 dark:text-white/90">Direct Bank Transfer</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <ArrowRight className="w-5 h-5 text-[#00C2FF]" />
-                  <span>UPI Payments</span>
+                  <span className="text-black/90 dark:text-white/90">UPI Payments</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <ArrowRight className="w-5 h-5 text-[#00C2FF]" />
-                  <span>Cryptocurrency</span>
+                  <span className="text-black/90 dark:text-white/90">Cryptocurrency</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <ArrowRight className="w-5 h-5 text-[#00C2FF]" />
-                  <span>International Wire Transfer</span>
+                  <span className="text-black/90 dark:text-white/90">International Wire Transfer</span>
                 </li>
               </ul>
             </div>

@@ -44,7 +44,7 @@ export function TokenomicsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">ROXN Token Economics</h2>
-          <p className="text-xl text-white/80">
+          <p className="text-xl text-black/80 dark:text-white/80">
             Powering our decentralized ecosystem through fair token distribution and rewards
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ export function TokenomicsSection() {
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-white/70">{feature.description}</p>
+              <p className="text-black/70 dark:text-white/70">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -78,28 +78,28 @@ export function TokenomicsSection() {
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between mb-2">
-                  <span>Contributors</span>
+                  <span className="text-black/90 dark:text-white/90">Contributors</span>
                   <span className="text-[#00C2FF]">40%</span>
                 </div>
-                <div className="w-full bg-white/10 rounded-full h-2">
+                <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-2">
                   <div className="bg-[#00C2FF] h-full rounded-full" style={{ width: '40%' }} />
                 </div>
               </div>
               <div>
                 <div className="flex justify-between mb-2">
-                  <span>Treasury</span>
+                  <span className="text-black/90 dark:text-white/90">Treasury</span>
                   <span className="text-[#00C2FF]">30%</span>
                 </div>
-                <div className="w-full bg-white/10 rounded-full h-2">
+                <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-2">
                   <div className="bg-[#00C2FF] h-full rounded-full" style={{ width: '30%' }} />
                 </div>
               </div>
               <div>
                 <div className="flex justify-between mb-2">
-                  <span>Community Initiatives</span>
+                  <span className="text-black/90 dark:text-white/90">Community Initiatives</span>
                   <span className="text-[#00C2FF]">30%</span>
                 </div>
-                <div className="w-full bg-white/10 rounded-full h-2">
+                <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-2">
                   <div className="bg-[#00C2FF] h-full rounded-full" style={{ width: '30%' }} />
                 </div>
               </div>

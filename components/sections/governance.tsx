@@ -1,135 +1,154 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Vote, GitPullRequest, Landmark, Users } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useState, useEffect } from "react";
+import { ComingSoonBadge } from "@/components/ui/coming-soon-badge";
+import { Button } from "@/components/ui/button";
+import { Vote, Users, FileText, Settings, LightbulbIcon, MessageCircle, Award, Target } from "lucide-react";
 
-const governanceFeatures = [
-  {
-    icon: <Vote className="w-8 h-8" />,
-    title: "Token-Based Voting",
-    description: "Participate in key decisions using your ROXN tokens"
-  },
-  {
-    icon: <GitPullRequest className="w-8 h-8" />,
-    title: "Proposal System",
-    description: "Submit and vote on improvement proposals"
-  },
-  {
-    icon: <Landmark className="w-8 h-8" />,
-    title: "Treasury Management",
-    description: "Transparent allocation of organization resources"
-  },
-  {
-    icon: <Users className="w-8 h-8" />,
-    title: "Community-First",
-    description: "Power to the contributors and stakeholders"
+const technicalContent = {
+  title: "Decentralized Governance",
+  subtitle: "Shape the future of Roxonn through decentralized decision-making",
+  features: [
+    {
+      icon: <Vote className="w-8 h-8" />,
+      title: "On-Chain Voting",
+      description: "Participate in transparent, verifiable voting using your ROXN tokens"
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: "DAO Structure",
+      description: "Be part of a Decentralized Autonomous Organization"
+    },
+    {
+      icon: <FileText className="w-8 h-8" />,
+      title: "Protocol Proposals",
+      description: "Submit and vote on protocol improvement proposals"
+    },
+    {
+      icon: <Settings className="w-8 h-8" />,
+      title: "Parameter Control",
+      description: "Vote on protocol parameters and reward mechanisms"
+    }
+  ],
+  cta: {
+    title: "Ready to Participate?",
+    description: "Governance will be enabled once the ROXN token is launched. Hold ROXN tokens to participate in decision-making and shape the future of our platform.",
+    buttonText: "View Governance Portal"
   }
-];
+};
+
+const simpleContent = {
+  title: "Community Voice",
+  subtitle: "Help make decisions and shape our future together",
+  features: [
+    {
+      icon: <LightbulbIcon className="w-8 h-8" />,
+      title: "Share Ideas",
+      description: "Suggest improvements and new features for the platform"
+    },
+    {
+      icon: <MessageCircle className="w-8 h-8" />,
+      title: "Vote Together",
+      description: "Use your points to vote on important decisions"
+    },
+    {
+      icon: <Award className="w-8 h-8" />,
+      title: "Get Rewards",
+      description: "Earn extra points for good suggestions and active voting"
+    },
+    {
+      icon: <Target className="w-8 h-8" />,
+      title: "Set Goals",
+      description: "Help decide what we should work on next"
+    }
+  ],
+  cta: {
+    title: "Want to Join?",
+    description: "Start earning points by helping others. Once you have enough points, you can vote and suggest new ideas to make the platform better.",
+    buttonText: "Join Community"
+  }
+};
 
 export function GovernanceSection() {
+  const [showTechnical, setShowTechnical] = useState(true);
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowTechnical(prev => !prev);
+    }, 10000); // Switch every 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentContent = showTechnical ? technicalContent : simpleContent;
 
   return (
     <section id="governance" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">Governance: Powered by Community</h2>
-          <p className="text-xl text-white/80">
-            Participate in shaping Roxonn's future through decentralized decision-making
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {governanceFeatures.map((feature, index) => (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={showTechnical ? 'technical' : 'simple'}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
             <motion.div
-              key={index}
+              ref={ref}
+              className="text-center mb-16"
+            >
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <h2 className="text-4xl font-bold gradient-text">{currentContent.title}</h2>
+                <ComingSoonBadge message="Coming soon - Join us to get updates!" />
+              </div>
+              <p className="text-xl text-black/80 dark:text-white/80">
+                {currentContent.subtitle}
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+              {currentContent.features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="glass-card text-center group"
+                >
+                  <div className="mb-6 text-[#00C2FF] group-hover:scale-110 transform transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
+                  <p className="text-black/70 dark:text-white/70">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="glass-card flex items-start space-x-4"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="glass-panel p-8 text-center"
             >
-              <div className="text-[#00C2FF]">{feature.icon}</div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-white/70">{feature.description}</p>
-              </div>
+              <h3 className="text-2xl font-semibold mb-4">{currentContent.cta.title}</h3>
+              <p className="text-black/70 dark:text-white/70 mb-8 max-w-2xl mx-auto">
+                {currentContent.cta.description}
+              </p>
+              <Button
+                disabled
+                className="glass-panel px-8 py-3"
+              >
+                {currentContent.cta.buttonText}
+              </Button>
             </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="glass-card"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">How Governance Works</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3">
-                  <span className="text-[#00C2FF] font-bold">1.</span>
-                  <p className="text-white/70">Token holders can create and submit proposals for changes or improvements</p>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <span className="text-[#00C2FF] font-bold">2.</span>
-                  <p className="text-white/70">Community members vote using their ROXN tokens</p>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <span className="text-[#00C2FF] font-bold">3.</span>
-                  <p className="text-white/70">Approved proposals are implemented by the community</p>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <span className="text-[#00C2FF] font-bold">4.</span>
-                  <p className="text-white/70">Results and implementations are transparently tracked</p>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold mb-6">Governance Tools</h3>
-              <div className="space-y-4">
-                <div className="glass-panel p-4">
-                  <h4 className="font-semibold mb-2">Snapshot</h4>
-                  <p className="text-white/70">Off-chain voting system for proposals</p>
-                </div>
-                <div className="glass-panel p-4">
-                  <h4 className="font-semibold mb-2">Gnosis Safe</h4>
-                  <p className="text-white/70">Multi-signature treasury management</p>
-                </div>
-                <div className="glass-panel p-4">
-                  <h4 className="font-semibold mb-2">Discord</h4>
-                  <p className="text-white/70">Community discussion and coordination</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12 text-center"
-        >
-          <a
-            href="https://snapshot.org/#/roxonn.eth"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass-panel px-8 py-3 hover-glow inline-block"
-          >
-            View Active Proposals
-          </a>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

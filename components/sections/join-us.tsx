@@ -62,7 +62,7 @@ export function JoinUsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Join Our Team</h2>
-          <p className="text-xl text-white/80">
+          <p className="text-xl text-black/80 dark:text-white/80">
             Be part of a revolutionary software development company
           </p>
         </motion.div>
@@ -79,7 +79,7 @@ export function JoinUsSection() {
               <div className="text-[#00C2FF]">{benefit.icon}</div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-white/70">{benefit.description}</p>
+                <p className="text-black/70 dark:text-white/70">{benefit.description}</p>
               </div>
             </motion.div>
           ))}
@@ -96,12 +96,12 @@ export function JoinUsSection() {
             {positions.map((position, index) => (
               <div key={index} className="glass-panel p-6">
                 <h4 className="text-xl font-semibold mb-2">{position.title}</h4>
-                <p className="text-white/70 mb-4">{position.type}</p>
+                <p className="text-black/70 dark:text-white/70 mb-4">{position.type}</p>
                 <div className="flex flex-wrap gap-2">
                   {position.skills.map((skill, skillIndex) => (
                     <span
                       key={skillIndex}
-                      className="px-3 py-1 rounded-full bg-[#00C2FF]/10 text-[#00C2FF] text-sm"
+                      className="px-3 py-1 rounded-full text-sm bg-black/10 dark:bg-white/10 text-black/90 dark:text-white/90"
                     >
                       {skill}
                     </span>

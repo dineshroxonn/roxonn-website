@@ -57,7 +57,7 @@ export function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">About Us</h2>
-          <p className="text-xl text-white/80">Excellence in software development and innovation</p>
+          <p className="text-xl text-black/80 dark:text-white/80">Excellence in software development and innovation</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
@@ -71,7 +71,7 @@ export function AboutSection() {
             >
               <div className="mb-4 text-[#00C2FF]">{value.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-              <p className="text-white/70">{value.description}</p>
+              <p className="text-black/70 dark:text-white/70">{value.description}</p>
             </motion.div>
           ))}
         </div>
@@ -93,7 +93,7 @@ export function AboutSection() {
                 />
               </div>
               <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-              <p className="text-white/70">{member.role}</p>
+              <p className="text-black/70 dark:text-white/70">{member.role}</p>
             </motion.div>
           ))}
         </div>
