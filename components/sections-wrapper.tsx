@@ -13,6 +13,15 @@ const HeroSection = dynamic(
   }
 );
 
+const AboutSection = dynamic(
+  () => import('@/components/sections/about').then((mod) => mod.AboutSection),
+  {
+    loading: () => (
+      <div className="min-h-[50vh] flex items-center justify-center">Loading About...</div>
+    ),
+  }
+);
+
 const ServicesSection = dynamic(
   () => import('@/components/sections/services').then((mod) => mod.ServicesSection),
   {
@@ -88,6 +97,7 @@ export function SectionsWrapper() {
       <GovernanceSection />
       <StakingSection />
       <RoadmapSection />
+      <AboutSection />
 
       {/* Email Subscription Section */}
       <section className="py-20 relative">
