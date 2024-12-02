@@ -1,28 +1,28 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, MessageSquare, Send } from 'lucide-react';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from '@/components/ui/use-toast';
 
 export function ContactSection() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
 
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message Sent!",
+      title: 'Message Sent!',
       description: "We'll get back to you as soon as possible.",
     });
     setFormData({ name: '', email: '', message: '' });
@@ -31,7 +31,7 @@ export function ContactSection() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -46,7 +46,9 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">Get in Touch</h2>
-          <p className="text-xl text-black/80 dark:text-white/80">Let's discuss your software project</p>
+          <p className="text-xl text-black/80 dark:text-white/80">
+            Let&apos;s discuss your software project
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -125,7 +127,10 @@ export function ContactSection() {
               />
             </div>
 
-            <p className="text-muted-foreground">Don&apos;t hesitate to reach out!</p>
+            <p className="mt-4 text-lg text-muted-foreground">
+              We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as
+              possible.
+            </p>
 
             <button
               type="submit"

@@ -34,7 +34,7 @@ const ErrorFallback = () => (
     <div className="text-center">
       <h2 className="text-2xl font-semibold text-gray-900 mb-4">Oops! Something went wrong</h2>
       <p className="text-gray-600 mb-8">
-        We're sorry for the inconvenience. Please try refreshing the page.
+        We&apos;re sorry for the inconvenience. Please try refreshing the page.
       </p>
       <button
         onClick={() => window.location.reload()}

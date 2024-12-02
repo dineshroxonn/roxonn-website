@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { GitHubContribution, fetchContributions } from '@/lib/github';
 import { ContributionCard } from './contribution-card';
 import {
@@ -20,11 +20,7 @@ export function ContributionList() {
   const [search, setSearch] = useState('');
   const { toast } = useToast();
 
-  useEffect(() => {
-    loadContributions();
-  }, [loadContributions]);
-
-  async function loadContributions() {
+  const loadContributions = useCallback(async () => {
     try {
       // TODO: Replace with actual username or get from authentication
       const data = await fetchContributions('example-user');
@@ -38,7 +34,11 @@ export function ContributionList() {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [toast]);
+
+  useEffect(() => {
+    loadContributions();
+  }, [loadContributions]);
 
   const filteredContributions = contributions
     .filter((contribution) => {

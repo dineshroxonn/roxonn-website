@@ -20,11 +20,9 @@ export default function GlobalError({
       <body>
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="text-center">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              Something went wrong!
-            </h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Something went wrong!</h2>
             <p className="text-gray-600 mb-8">
-              We've been notified of the issue and are working to fix it.
+              We&apos;ve been notified of the issue and are working to fix it.
             </p>
             <button
               onClick={() => reset()}
