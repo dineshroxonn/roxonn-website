@@ -76,6 +76,15 @@ const RoadmapSection = dynamic(
   }
 );
 
+const ContactSection = dynamic(
+  () => import('@/components/sections/contact').then((mod) => mod.ContactSection),
+  {
+    loading: () => (
+      <div className="min-h-[50vh] flex items-center justify-center">Loading Contact...</div>
+    ),
+  }
+);
+
 const SubscribeForm = dynamic(
   () => import('@/components/ui/subscribe-form').then((mod) => mod.SubscribeForm),
   {
@@ -98,7 +107,7 @@ export function SectionsWrapper() {
       <StakingSection />
       <RoadmapSection />
       <AboutSection />
-
+      <ContactSection />
       {/* Email Subscription Section */}
       <section className="py-20 relative">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

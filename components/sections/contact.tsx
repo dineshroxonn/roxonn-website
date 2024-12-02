@@ -3,15 +3,59 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, MessageSquare, Send } from 'lucide-react';
+import { Mail, MessageSquare, Send, GitBranch, Shield, Rocket } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+
+const contactCategories = [
+  {
+    title: 'Submit Project',
+    description: 'Have a project idea? Let&apos;s build together',
+    icon: <Rocket className="w-6 h-6 text-[#00C2FF]" />,
+    type: 'project',
+  },
+  {
+    title: 'Technical Collaboration',
+    description: 'Join our global network of developers',
+    icon: <GitBranch className="w-6 h-6 text-[#00C2FF]" />,
+    type: 'technical',
+  },
+  {
+    title: 'General Inquiry',
+    description: 'Questions about Roxonn',
+    icon: <MessageSquare className="w-6 h-6 text-[#00C2FF]" />,
+    type: 'general',
+  },
+];
+
+const projectTypes = [
+  'Web3 Development',
+  'DeFi Solution',
+  'Decentralized Application',
+  'Smart Contracts',
+  'Other',
+];
+
+const developmentStages = [
+  'Idea Phase',
+  'Initial Planning',
+  'Technical Specification',
+  'In Development',
+  'Ready for Enhancement',
+];
 
 export function ContactSection() {
   const { toast } = useToast();
+  const [selectedCategory, setSelectedCategory] = useState('general');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
+    githubUsername: '',
+    projectType: '',
+    developmentStage: '',
+    budget: '',
+    timeline: '',
+    projectTitle: '',
   });
 
   const [ref, inView] = useInView({
@@ -22,13 +66,28 @@ export function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: 'Message Sent!',
-      description: "We'll get back to you as soon as possible.",
+      title: 'Submission Received!',
+      description:
+        selectedCategory === 'project'
+          ? `We will review your project and get back to you with next steps.`
+          : `We will get back to you soon.`,
     });
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({
+      name: '',
+      email: '',
+      message: '',
+      githubUsername: '',
+      projectType: '',
+      developmentStage: '',
+      budget: '',
+      timeline: '',
+      projectTitle: '',
+    });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -45,43 +104,45 @@ export function ContactSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">Get in Touch</h2>
+          <h2 className="text-4xl font-bold mb-4 gradient-text">Let&apos;s Build Together</h2>
           <p className="text-xl text-black/80 dark:text-white/80">
-            Let&apos;s discuss your software project
+            Whether you have a project idea or want to contribute, we&apos;re here to help
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="glass-card flex items-center space-x-4">
-              <Mail className="w-6 h-6 text-[#00C2FF]" />
-              <div>
-                <h3 className="font-semibold">Email Us</h3>
-                <p className="text-black/70 dark:text-white/70">contact@roxonn.com</p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+          {contactCategories.map((category) => (
+            <motion.div
+              key={category.type}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+              onClick={() => setSelectedCategory(category.type)}
+              className={`glass-card cursor-pointer transition-all ${
+                selectedCategory === category.type
+                  ? 'ring-2 ring-[#00C2FF] scale-105'
+                  : 'hover:scale-105'
+              }`}
+            >
+              <div className="flex items-center space-x-4 p-6">
+                {category.icon}
+                <div>
+                  <h3 className="font-semibold">{category.title}</h3>
+                  <p className="text-black/70 dark:text-white/70">{category.description}</p>
+                </div>
               </div>
-            </div>
+            </motion.div>
+          ))}
+        </div>
 
-            <div className="glass-card flex items-center space-x-4">
-              <MessageSquare className="w-6 h-6 text-[#00C2FF]" />
-              <div>
-                <h3 className="font-semibold">Live Chat</h3>
-                <p className="text-black/70 dark:text-white/70">Available 24/7</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.form
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            onSubmit={handleSubmit}
-            className="glass-card space-y-6"
-          >
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          onSubmit={handleSubmit}
+          className="glass-card max-w-2xl mx-auto space-y-6 p-8"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">
                 Name
@@ -111,36 +172,171 @@ export function ContactSection() {
                 required
               />
             </div>
+          </div>
 
+          {selectedCategory === 'project' && (
+            <>
+              <div>
+                <label htmlFor="projectTitle" className="block text-sm font-medium mb-2">
+                  Project Title
+                </label>
+                <input
+                  type="text"
+                  id="projectTitle"
+                  name="projectTitle"
+                  value={formData.projectTitle}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="projectType" className="block text-sm font-medium mb-2">
+                    Project Type
+                  </label>
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                    required
+                  >
+                    <option value="">Select Type</option>
+                    {projectTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="developmentStage" className="block text-sm font-medium mb-2">
+                    Development Stage
+                  </label>
+                  <select
+                    id="developmentStage"
+                    name="developmentStage"
+                    value={formData.developmentStage}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                    required
+                  >
+                    <option value="">Select Stage</option>
+                    {developmentStages.map((stage) => (
+                      <option key={stage} value={stage}>
+                        {stage}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="budget" className="block text-sm font-medium mb-2">
+                    Estimated Budget (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="budget"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleChange}
+                    placeholder="e.g., $5,000 - $10,000"
+                    className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="timeline" className="block text-sm font-medium mb-2">
+                    Expected Timeline (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="timeline"
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleChange}
+                    placeholder="e.g., 3-6 months"
+                    className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+                  />
+                </div>
+              </div>
+            </>
+          )}
+
+          {selectedCategory === 'technical' && (
             <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">
-                Message
+              <label htmlFor="githubUsername" className="block text-sm font-medium mb-2">
+                GitHub Username
               </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
+              <input
+                type="text"
+                id="githubUsername"
+                name="githubUsername"
+                value={formData.githubUsername}
                 onChange={handleChange}
-                rows={4}
                 className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
                 required
               />
             </div>
+          )}
 
-            <p className="mt-4 text-lg text-muted-foreground">
-              We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as
-              possible.
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium mb-2">
+              {selectedCategory === 'project' ? 'Project Description' : 'Message'}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={4}
+              className="w-full px-4 py-2 bg-black/5 dark:bg-white/10 rounded-lg focus:ring-2 focus:ring-[#00C2FF] transition-all"
+              required
+              placeholder={
+                selectedCategory === 'project'
+                  ? 'Describe your project idea, goals, and any specific requirements...'
+                  : 'Your message...'
+              }
+            />
+          </div>
+
+          <div className="bg-black/5 dark:bg-white/5 rounded-lg p-4">
+            <p className="text-sm text-black/70 dark:text-white/70">
+              {selectedCategory === 'project' &&
+                'Share your vision and we&apos;ll help bring it to life through our decentralized development platform.'}
+              {selectedCategory === 'technical' &&
+                'Share your technical expertise and how you&apos;d like to contribute to our ecosystem.'}
+              {selectedCategory === 'general' &&
+                'We&apos;d love to hear from you. Send us your questions or feedback.'}
             </p>
+          </div>
 
-            <button
-              type="submit"
-              className="w-full glass-panel py-3 flex items-center justify-center space-x-2 hover-glow"
-            >
-              <span>Send Message</span>
-              <Send className="w-4 h-4" />
-            </button>
-          </motion.form>
-        </div>
+          <button
+            type="submit"
+            className="w-full glass-panel py-3 flex items-center justify-center space-x-2 hover-glow"
+          >
+            <span>Submit {selectedCategory === 'project' ? 'Project' : 'Message'}</span>
+            <Send className="w-4 h-4" />
+          </button>
+        </motion.form>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center space-x-2 text-black/70 dark:text-white/70">
+            <Mail className="w-5 h-5" />
+            <span>connect@roxonn.com</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
