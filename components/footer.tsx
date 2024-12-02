@@ -1,14 +1,17 @@
-"use client";
+'use client';
 
 import { motion } from 'framer-motion';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 const socialLinks = [
-  { icon: <Github className="w-5 h-5" />, href: "https://github.com/roxonn" },
-  { icon: <Twitter className="w-5 h-5" />, href: "https://twitter.com/roxonn" },
-  { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/company/roxonn" },
-  { icon: <Mail className="w-5 h-5" />, href: "mailto:contact@roxonn.com" }
+  { icon: <Github className="w-5 h-5" />, href: 'https://github.com/Roxonn-FutureTech' },
+  { icon: <Twitter className="w-5 h-5" />, href: 'https://x.com/Roxonnpvtltd' },
+  {
+    icon: <Linkedin className="w-5 h-5" />,
+    href: 'https://www.linkedin.com/company/roxonn-futuretech/',
+  },
+  { icon: <Mail className="w-5 h-5" />, href: 'mailto:connect@roxonn.com' },
 ];
 
 export function Footer() {
@@ -19,7 +22,8 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold gradient-text mb-4">ROXONN</h3>
             <p className="text-black/70 dark:text-white/70 mb-4">
-              Delivering innovative software solutions and exceptional development services to transform your business.
+              Delivering innovative software solutions and exceptional development services to
+              transform your business.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((link, index) => (
@@ -57,9 +61,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-black dark:text-white">Contact</h4>
             <address className="text-black/70 dark:text-white/70 not-italic">
-              <p>123 Tech Avenue</p>
-              <p>Innovation District</p>
-              <p>contact@roxonn.com</p>
+              <p>connect@roxonn.com</p>
             </address>
           </div>
         </div>
