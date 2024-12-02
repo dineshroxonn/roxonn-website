@@ -60,12 +60,12 @@ export function WhyRoxonnSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="glass-card flex items-start space-x-6"
+              className="bg-card hover:bg-card/80 p-6 rounded-lg border border-border/50 shadow-sm transition-colors"
             >
-              <div className="text-[#00C2FF] flex-shrink-0">{feature.icon}</div>
+              <div className="text-primary flex-shrink-0">{feature.icon}</div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-black/70 dark:text-white/70">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
             </motion.div>
           ))}
@@ -77,9 +77,9 @@ export function WhyRoxonnSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-12 text-center"
         >
-          <div className="glass-card max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
-            <p className="text-black/70 dark:text-white/70">
+          <div className="bg-card p-8 rounded-lg border border-border/50 shadow-sm max-w-3xl mx-auto">
+            <h3 className="text-2xl font-semibold mb-4 text-foreground">Our Vision</h3>
+            <p className="text-muted-foreground">
               At Roxonn, we&apos;re building more than just software - we&apos;re creating a new
               paradigm for how technology companies operate. Through our decentralized model, we
               ensure that every contributor is valued, every voice is heard, and every project

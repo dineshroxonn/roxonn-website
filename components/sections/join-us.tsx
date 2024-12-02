@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -7,48 +7,48 @@ import { Clock, Globe, Wallet, Award } from 'lucide-react';
 const benefits = [
   {
     icon: <Clock className="w-8 h-8" />,
-    title: "Flexible Hours",
-    description: "Work when you're most productive with our flexible scheduling."
+    title: 'Flexible Hours',
+    description: "Work when you're most productive with our flexible scheduling.",
   },
   {
     icon: <Globe className="w-8 h-8" />,
-    title: "Remote First",
-    description: "Join our global team and work from anywhere in the world."
+    title: 'Remote First',
+    description: 'Join our global team and work from anywhere in the world.',
   },
   {
     icon: <Wallet className="w-8 h-8" />,
-    title: "Fair Compensation",
-    description: "Earn 90% of project revenue with our transparent payment model."
+    title: 'Fair Compensation',
+    description: 'Earn 90% of project revenue with our transparent payment model.',
   },
   {
     icon: <Award className="w-8 h-8" />,
-    title: "Skill Growth",
-    description: "Continuous learning and development opportunities."
-  }
+    title: 'Skill Growth',
+    description: 'Continuous learning and development opportunities.',
+  },
 ];
 
 const positions = [
   {
-    title: "Full Stack Developer",
-    type: "Full-time / Part-time",
-    skills: ["React", "Node.js", "TypeScript", "AWS"],
+    title: 'Full Stack Developer',
+    type: 'Full-time / Part-time',
+    skills: ['React', 'Node.js', 'TypeScript', 'AWS'],
   },
   {
-    title: "Blockchain Engineer",
-    type: "Full-time",
-    skills: ["Solidity", "Web3.js", "Smart Contracts"],
+    title: 'Blockchain Engineer',
+    type: 'Full-time',
+    skills: ['Solidity', 'Web3.js', 'Smart Contracts'],
   },
   {
-    title: "UI/UX Designer",
-    type: "Freelance",
-    skills: ["Figma", "User Research", "Design Systems"],
-  }
+    title: 'UI/UX Designer',
+    type: 'Freelance',
+    skills: ['Figma', 'User Research', 'Design Systems'],
+  },
 ];
 
 export function JoinUsSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   return (
@@ -120,7 +120,7 @@ export function JoinUsSection() {
         >
           <a
             href="#contact"
-            className="glass-panel px-8 py-3 hover-glow inline-block"
+            className="bg-white/90 dark:bg-white/10 text-zinc-900 dark:text-white border border-zinc-200 dark:border-white/20 px-8 py-3 rounded-lg hover:bg-white dark:hover:bg-white/20 transition-all duration-200 inline-block"
           >
             Apply Now
           </a>

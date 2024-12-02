@@ -1,95 +1,88 @@
-"use client";
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { Float, PerspectiveCamera } from '@react-three/drei';
 import Particles from 'react-particles';
-import { loadSlim } from "tsparticles-slim";
+import { loadSlim } from 'tsparticles-slim';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import { CustomButton } from '@/components/ui/custom-button';
 
 function Logo3D() {
   return (
-    <Float
-      speed={4}
-      rotationIntensity={0.5}
-      floatIntensity={0.5}
-    >
+    <Float speed={4} rotationIntensity={0.5} floatIntensity={0.5}>
       <mesh>
         <torusKnotGeometry args={[1, 0.3, 128, 16]} />
-        <meshStandardMaterial
-          color="#00C2FF"
-          emissive="#7000FF"
-          metalness={0.8}
-          roughness={0.2}
-        />
+        <meshStandardMaterial color="#00C2FF" emissive="#7000FF" metalness={0.8} roughness={0.2} />
       </mesh>
     </Float>
   );
 }
 
 const technicalContent = {
-  title: "Decentralizing Innovation",
-  subtitle: "Join the Future of Software with Roxonn DSO - Where Global Contributors Shape Tomorrow's Technology",
+  title: 'Decentralizing Innovation',
+  subtitle:
+    "Join the Future of Software with Roxonn DSO - Where Global Contributors Shape Tomorrow's Technology",
   features: [
     {
-      title: "Community Governed",
-      description: "Decisions driven by token holders and contributors"
+      title: 'Community Governed',
+      description: 'Decisions driven by token holders and contributors',
     },
     {
-      title: "Token Rewards",
-      description: "Earn tokens for your valuable contributions"
+      title: 'Token Rewards',
+      description: 'Earn tokens for your valuable contributions',
     },
     {
-      title: "Global Impact",
-      description: "Shape the future of decentralized software"
-    }
+      title: 'Global Impact',
+      description: 'Shape the future of decentralized software',
+    },
   ],
   buttons: [
     {
-      text: "Learn About Governance",
-      href: "#governance",
-      primary: true
+      text: 'Learn About Governance',
+      href: '#governance',
+      primary: true,
     },
     {
-      text: "Join Our Community",
-      href: "https://discord.gg/roxonn",
-      primary: false
-    }
-  ]
+      text: 'Join Our Community',
+      href: 'https://discord.gg/roxonn',
+      primary: false,
+    },
+  ],
 };
 
 const simpleContent = {
-  title: "Earn Rewards for Your Software Skills",
-  subtitle: "Join Roxonn and get paid for helping build software. Share your programming skills, solve problems, and earn rewards for your contributions.",
+  title: 'Earn Rewards for Your Software Skills',
+  subtitle:
+    'Join Roxonn and get paid for helping build software. Share your programming skills, solve problems, and earn rewards for your contributions.',
   features: [
     {
-      title: "Simple to Start",
-      description: "Sign up with your email and start contributing right away"
+      title: 'Simple to Start',
+      description: 'Sign up with your email and start contributing right away',
     },
     {
-      title: "Get Paid in Points",
-      description: "Earn reward points for every approved contribution"
+      title: 'Get Paid in Points',
+      description: 'Earn reward points for every approved contribution',
     },
     {
-      title: "Secure Rewards",
-      description: "Your points are safely stored and can be converted to rewards"
-    }
+      title: 'Secure Rewards',
+      description: 'Your points are safely stored and can be converted to rewards',
+    },
   ],
   buttons: [
     {
-      text: "Start Earning Now",
-      href: "#services",
-      primary: true
+      text: 'Start Earning Now',
+      href: '#services',
+      primary: true,
     },
     {
-      text: "Learn How It Works",
-      href: "#services",
-      primary: false
-    }
-  ]
+      text: 'Learn How It Works',
+      href: '#services',
+      primary: false,
+    },
+  ],
 };
 
 export function HeroSection() {
@@ -97,7 +90,7 @@ export function HeroSection() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setShowTechnical(prev => !prev);
+      setShowTechnical((prev) => !prev);
     }, 10000); // Switch every 10 seconds
 
     return () => clearInterval(interval);
@@ -110,26 +103,27 @@ export function HeroSection() {
   const currentContent = showTechnical ? technicalContent : simpleContent;
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-white to-zinc-100 dark:from-zinc-900 dark:to-black">
+      <div className="absolute inset-0 bg-grid-slate/[0.02] dark:bg-grid-white/[0.05]" />
       <Particles
         id="tsparticles"
         init={particlesInit}
         options={{
           background: {
             color: {
-              value: "transparent",
+              value: 'transparent',
             },
           },
           fpsLimit: 120,
           particles: {
             color: {
-              value: "#00C2FF",
+              value: '#4F46E5',
             },
             links: {
-              color: "#00C2FF",
+              color: '#4F46E5',
               distance: 150,
               enable: true,
-              opacity: 0.2,
+              opacity: 0.1,
               width: 1,
             },
             move: {
@@ -175,21 +169,20 @@ export function HeroSection() {
               {currentContent.title}
             </h1>
 
-            <p className="text-xl md:text-2xl text-black/80 dark:text-white/80 mb-8">
+            <p className="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 mb-8">
               {currentContent.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 items-center mb-16">
               {currentContent.buttons.map((button, index) => (
                 <Link key={index} href={button.href}>
-                  <Button 
-                    className={`glass-panel px-8 py-3 hover-glow w-full sm:w-auto flex items-center justify-center gap-2 ${
-                      button.primary ? '' : 'variant-outline'
-                    }`}
+                  <CustomButton
+                    variant={button.primary ? 'primary' : 'secondary'}
+                    className="w-full sm:w-auto"
                   >
                     <span>{button.text}</span>
                     {button.primary && <ArrowRight className="w-4 h-4" />}
-                  </Button>
+                  </CustomButton>
                 </Link>
               ))}
             </div>
@@ -200,11 +193,13 @@ export function HeroSection() {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass-card"
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  className="backdrop-blur-sm bg-white/50 dark:bg-black/20 border border-zinc-200/50 dark:border-white/10 rounded-lg p-6 shadow-sm"
                 >
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-black/70 dark:text-white/70">{feature.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-zinc-900 dark:text-white">
+                    {feature.title}
+                  </h3>
+                  <p className="text-zinc-600 dark:text-zinc-300">{feature.description}</p>
                 </motion.div>
               ))}
             </div>

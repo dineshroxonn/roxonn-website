@@ -150,7 +150,7 @@ export function ProjectsSection() {
         >
           <Link
             href="#join-us"
-            className="glass-panel px-8 py-3 hover-glow inline-flex items-center space-x-2"
+            className="bg-white/90 dark:bg-white/10 text-zinc-900 dark:text-white border border-zinc-200 dark:border-white/20 px-8 py-3 rounded-lg hover:bg-white dark:hover:bg-white/20 transition-all duration-200 inline-flex items-center space-x-2"
           >
             <span>Start Contributing</span>
             <ArrowRight className="w-4 h-4" />
