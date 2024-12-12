@@ -5,9 +5,6 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
 # next.js
 /.next/
 /out/
@@ -18,8 +15,6 @@
 # misc
 .DS_Store
 *.pem
-.env*.local
-.env.production
 
 # debug
 npm-debug.log*
@@ -27,11 +22,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
 
 # vercel
 .vercel
@@ -40,10 +31,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# IDE
-.idea
-.vscode
-
 # Sentry
 .sentryclirc
-*.bak

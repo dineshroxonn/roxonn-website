@@ -74,11 +74,6 @@
   @apply hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-200;
 }
 
-.custom-cursor {
-  @apply fixed w-8 h-8 pointer-events-none mix-blend-difference z-50;
-  transform: translate(-50%, -50%);
-}
-
 .parallax-section {
   @apply relative overflow-hidden;
   transform-style: preserve-3d;
