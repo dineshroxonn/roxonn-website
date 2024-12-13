@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { GitHubContribution, fetchContributions } from '@/lib/github';
+import { GitHubContribution, fetchContributions } from '@/lib/services/github';
 import { ContributionCard } from './contribution-card';
 import {
   Select,

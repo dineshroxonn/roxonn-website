@@ -1,5 +1,3 @@
-import { captureException } from '@sentry/nextjs';
-
 export interface ErrorWithCode extends Error {
   code?: string;
   statusCode?: number;
@@ -25,27 +23,20 @@ export class AppError extends Error {
   }
 }
 
-export const handleError = (error: Error | AppError | unknown) => {
-  if (error instanceof AppError) {
-    // Operational errors - log but don't notify
-    if (error.isOperational) {
-      console.error(`[Operational Error] ${error.message}`, {
-        code: error.code,
-        statusCode: error.statusCode,
-      });
-      return;
-    }
+export function handleError(error: Error | AppError | unknown) {
+  if (isAppError(error)) {
+    console.error(`[${error.code}] ${error.message}`);
+    return error;
   }
 
-  // Programming or unknown errors - notify and log
-  console.error('[System Error]', error);
-  captureException(error);
+  if (error instanceof Error) {
+    console.error(`[INTERNAL_ERROR] ${error.message}`);
+    return new AppError(error.message);
+  }
 
-  // Here you can add additional error handling like:
-  // - Graceful process shutdown
-  // - Cleanup of resources
-  // - Notification to admin
-};
+  console.error('[UNKNOWN_ERROR]', error);
+  return new AppError('An unknown error occurred');
+}
 
 export const isAppError = (error: unknown): error is AppError => {
   return error instanceof AppError;

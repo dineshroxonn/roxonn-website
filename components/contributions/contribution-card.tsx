@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { GitHubContribution } from "@/lib/github";
-import { motion } from "framer-motion";
-import { ExternalLink, GitPullRequest } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
+import { GitHubContribution } from '@/lib/services/github';
+import { motion } from 'framer-motion';
+import { ExternalLink, GitPullRequest } from 'lucide-react';
+import { formatDistanceToNow } from 'date-fns';
 import {
   Card,
   CardContent,
@@ -11,24 +11,24 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 interface ContributionCardProps {
   contribution: GitHubContribution;
 }
 
 const typeColors = {
-  bug: "text-red-500 bg-red-500/10 border-red-500/20",
-  feature: "text-green-500 bg-green-500/10 border-green-500/20",
-  docs: "text-blue-500 bg-blue-500/10 border-blue-500/20",
-  refactor: "text-purple-500 bg-purple-500/10 border-purple-500/20",
+  bug: 'text-red-500 bg-red-500/10 border-red-500/20',
+  feature: 'text-green-500 bg-green-500/10 border-green-500/20',
+  docs: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
+  refactor: 'text-purple-500 bg-purple-500/10 border-purple-500/20',
 };
 
 const statusColors = {
-  pending: "text-yellow-500 bg-yellow-500/10 border-yellow-500/20",
-  approved: "text-green-500 bg-green-500/10 border-green-500/20",
-  rejected: "text-red-500 bg-red-500/10 border-red-500/20",
+  pending: 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20',
+  approved: 'text-green-500 bg-green-500/10 border-green-500/20',
+  rejected: 'text-red-500 bg-red-500/10 border-red-500/20',
 };
 
 export function ContributionCard({ contribution }: ContributionCardProps) {
@@ -42,11 +42,9 @@ export function ContributionCard({ contribution }: ContributionCardProps) {
         <CardHeader className="pb-4">
           <div className="flex items-start justify-between">
             <div className="space-y-1">
-              <CardTitle className="text-lg font-semibold">
-                {contribution.title}
-              </CardTitle>
+              <CardTitle className="text-lg font-semibold">{contribution.title}</CardTitle>
               <CardDescription>
-                PR #{contribution.prNumber} •{" "}
+                PR #{contribution.prNumber} •{' '}
                 {formatDistanceToNow(new Date(contribution.createdAt), {
                   addSuffix: true,
                 })}
@@ -64,16 +62,10 @@ export function ContributionCard({ contribution }: ContributionCardProps) {
         </CardHeader>
         <CardContent className="pb-4">
           <div className="flex flex-wrap gap-2">
-            <Badge
-              variant="outline"
-              className={`${typeColors[contribution.type]} capitalize`}
-            >
+            <Badge variant="outline" className={`${typeColors[contribution.type]} capitalize`}>
               {contribution.type}
             </Badge>
-            <Badge
-              variant="outline"
-              className={`${statusColors[contribution.status]} capitalize`}
-            >
+            <Badge variant="outline" className={`${statusColors[contribution.status]} capitalize`}>
               {contribution.status}
             </Badge>
             <Badge variant="outline" className="capitalize">
@@ -89,9 +81,7 @@ export function ContributionCard({ contribution }: ContributionCardProps) {
             </div>
             <div className="text-right">
               <div className="text-sm font-medium">Reward</div>
-              <div className="text-lg font-bold text-[#00C2FF]">
-                {contribution.reward} ROXN
-              </div>
+              <div className="text-lg font-bold text-[#00C2FF]">{contribution.reward} ROXN</div>
             </div>
           </div>
         </CardFooter>

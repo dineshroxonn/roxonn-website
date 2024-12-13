@@ -3,7 +3,7 @@ import { Subscription } from '../types/subscription';
 import crypto from 'crypto';
 
 const TABLE_NAME = 'subscriptions';
-const FROM_EMAIL = process.env.SENDER_EMAIL_ADDRESS;
+const FROM_EMAIL = process.env.SENDER_EMAIL_ADDRESS || 'noreply@roxonn.com';
 
 export class SubscriptionService {
   static async subscribe(email: string, gdprConsent: boolean): Promise<void> {
@@ -87,7 +87,7 @@ export class SubscriptionService {
     const confirmUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/subscribe/confirm?token=${token}`;
 
     const params = {
-      Source: FROM_EMAIL,
+      Source: process.env.SES_FROM_EMAIL || 'noreply@yourdomain.com',
       Destination: { ToAddresses: [email] },
       Message: {
         Subject: {
