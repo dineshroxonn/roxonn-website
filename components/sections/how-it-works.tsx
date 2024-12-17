@@ -14,7 +14,23 @@ import {
   Settings,
 } from 'lucide-react';
 
-const flows = [
+interface Step {
+  title: string;
+  icon: any;
+  description: string;
+  reward?: string;
+  cost?: string;
+}
+
+interface Flow {
+  title: string;
+  description: string;
+  icon: any;
+  isLive: boolean;
+  steps: Step[];
+}
+
+const flows: Flow[] = [
   {
     title: 'Contribute & Earn',
     description: 'Help build Roxonn projects and earn ROXN tokens',
@@ -80,6 +96,111 @@ const flows = [
         title: 'Start Building',
         icon: FileCode,
         description: 'Begin development with community',
+      },
+    ],
+  },
+  {
+    title: 'Vote & Decide',
+    description: 'Help shape the future of Roxonn',
+    icon: Vote,
+    isLive: false,
+    steps: [
+      {
+        title: 'Browse Proposals',
+        icon: Lightbulb,
+        description: 'View community proposals',
+      },
+      {
+        title: 'Stake ROXN',
+        icon: Coins,
+        description: 'Lock your tokens to vote',
+        cost: '100 ROXN',
+      },
+      {
+        title: 'Cast Vote',
+        icon: Vote,
+        description: 'Vote on proposals',
+      },
+      {
+        title: 'Proposal Passed',
+        icon: Check,
+        description: 'Proposal is accepted',
+      },
+      {
+        title: 'Earn Rewards',
+        icon: Coins,
+        description: 'Get voting rewards',
+        reward: '10 ROXN',
+      },
+    ],
+  },
+  {
+    title: 'Moderate & Earn',
+    description: 'Help maintain quality standards',
+    icon: Users,
+    isLive: false,
+    steps: [
+      {
+        title: 'Review Changes',
+        icon: GitPullRequest,
+        description: 'Review code changes',
+      },
+      {
+        title: 'Provide Feedback',
+        icon: MessageSquare,
+        description: 'Give constructive feedback',
+      },
+      {
+        title: 'Vote on Changes',
+        icon: Vote,
+        description: 'Vote to accept/reject',
+        cost: '50 ROXN',
+      },
+      {
+        title: 'Changes Merged',
+        icon: Check,
+        description: 'Code is merged',
+      },
+      {
+        title: 'Earn Rewards',
+        icon: Coins,
+        description: 'Get moderation rewards',
+        reward: '25 ROXN',
+      },
+    ],
+  },
+  {
+    title: 'Build & Configure',
+    description: 'Help improve platform features',
+    icon: Settings,
+    isLive: false,
+    steps: [
+      {
+        title: 'Find Feature',
+        icon: Lightbulb,
+        description: 'Browse feature requests',
+      },
+      {
+        title: 'Implement Feature',
+        icon: FileCode,
+        description: 'Build the feature',
+        reward: '200 ROXN',
+      },
+      {
+        title: 'Get Reviewed',
+        icon: MessageSquare,
+        description: 'Community reviews feature',
+      },
+      {
+        title: 'Feature Approved',
+        icon: Check,
+        description: 'Feature is accepted',
+        reward: '300 ROXN',
+      },
+      {
+        title: 'Earn Rewards',
+        icon: Coins,
+        description: 'Receive ROXN tokens',
       },
     ],
   },

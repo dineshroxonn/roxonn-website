@@ -110,21 +110,21 @@ export async function getOrganizationProjects(): Promise<Project[]> {
   }
 }
 
-export async function fetchContributions(): Promise<GitHubContribution[]> {
+export async function fetchContributions(username: string): Promise<GitHubContribution[]> {
   try {
     const { data: pulls } = await octokit.pulls.list({
-      owner: 'roxonn',
-      repo: 'website',
+      owner: username,
+      repo: 'roxonn-website',
       state: 'all',
       per_page: 100,
     });
 
     return pulls.map((pull) => ({
-      id: pull.number.toString(),
+      id: pull.node_id,
       title: pull.title,
       url: pull.html_url,
       type: determineContributionType(pull.title.toLowerCase()),
-      repository: 'website',
+      repository: 'roxonn-website',
       createdAt: pull.created_at,
       status: pull.state === 'open' ? 'open' : pull.merged_at ? 'merged' : 'closed',
       prNumber: pull.number,
