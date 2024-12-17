@@ -199,21 +199,21 @@ export function HowItWorksSection() {
               </div>
 
               <div className="relative">
-                <div className="absolute top-0 left-6 h-full w-px bg-border" />
-                <div className="space-y-8">
+                <div className="absolute top-1/2 left-0 w-full h-px bg-border" />
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                   {flow.steps.map((step, stepIndex) => (
                     <motion.div
                       key={stepIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.5, delay: stepIndex * 0.1 + flowIndex * 0.2 }}
-                      className="relative pl-16"
+                      className="relative flex flex-col items-center text-center"
                     >
-                      <div className="absolute left-0 p-3 bg-background border border-border rounded-full">
-                        <step.icon className="w-4 h-4 text-primary" />
+                      <div className="mb-4 p-4 bg-background border border-border rounded-full z-10">
+                        <step.icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold mb-1 text-foreground flex items-center gap-2">
+                        <h4 className="text-lg font-semibold mb-2 text-foreground flex flex-col items-center gap-2">
                           {step.title}
                           {step.reward && (
                             <span className="text-xs font-medium text-green-500 bg-green-500/10 px-2 py-1 rounded-full">
@@ -226,8 +226,19 @@ export function HowItWorksSection() {
                             </span>
                           )}
                         </h4>
-                        <p className="text-muted-foreground">{step.description}</p>
+                        <p className="text-muted-foreground text-sm">{step.description}</p>
                       </div>
+                      {stepIndex < flow.steps.length - 1 && (
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          animate={inView ? { scaleX: 1 } : {}}
+                          transition={{
+                            duration: 0.5,
+                            delay: (stepIndex + 1) * 0.1 + flowIndex * 0.2,
+                          }}
+                          className="absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-px bg-gradient-to-r from-[#00C2FF] to-[#7000FF] origin-left"
+                        />
+                      )}
                     </motion.div>
                   ))}
                 </div>

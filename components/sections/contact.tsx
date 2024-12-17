@@ -9,7 +9,7 @@ import { useToast } from '@/components/ui/use-toast';
 const contactCategories = [
   {
     title: 'Submit Project',
-    description: 'Have a project idea? Let&apos;s build together',
+    description: 'Have a project idea? Lets build together',
     icon: <Rocket className="w-6 h-6 text-[#00C2FF]" />,
     type: 'project',
   },
@@ -319,7 +319,7 @@ export function ContactSection() {
 
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-200 gap-2"
+            className="glass-panel w-full px-6 py-3 inline-flex items-center justify-center hover-glow gap-2"
           >
             <span>Submit {selectedCategory === 'project' ? 'Project' : 'Message'}</span>
             <Send className="w-4 h-4" />
