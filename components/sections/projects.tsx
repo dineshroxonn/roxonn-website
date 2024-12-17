@@ -161,23 +161,24 @@ export function ProjectsSection() {
                 ))}
           </div>
         )}
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-12"
-        >
+        <div className="flex justify-center items-center gap-4 mt-8">
+          <Link
+            href="/contribute"
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-200"
+          >
+            View All Tasks
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
           <Link
             href="https://github.com/Roxonn-FutureTech"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white/90 dark:bg-white/10 text-zinc-900 dark:text-white border border-zinc-200 dark:border-white/20 px-8 py-3 rounded-lg hover:bg-white dark:hover:bg-white/20 transition-all duration-200 inline-flex items-center space-x-2"
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-card border border-border hover:bg-card/80 transition-all duration-200"
           >
-            <span>View All Projects</span>
-            <ArrowRight className="w-4 h-4" />
+            View All Projects
+            <ArrowRight className="ml-2 w-4 h-4" />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

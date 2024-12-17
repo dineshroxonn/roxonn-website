@@ -57,35 +57,60 @@ export function SubscribeForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="flex-1"
-        />
-        <Button type="submit" disabled={isLoading || !gdprConsent}>
-          {isLoading ? 'Subscribing...' : 'Subscribe'}
-        </Button>
+    <section className="py-20 relative">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold mb-8 gradient-text"
+        >
+          Stay Updated
+        </motion.h2>
+
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          onSubmit={handleSubmit}
+          className="space-y-4"
+        >
+          <div className="flex gap-2">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="flex-1 bg-card/50"
+            />
+            <Button
+              type="submit"
+              disabled={isLoading || !gdprConsent}
+              className="whitespace-nowrap"
+            >
+              Subscribe
+            </Button>
+          </div>
+
+          <div className="flex items-center gap-2 justify-center text-sm text-muted-foreground">
+            <Checkbox
+              id="gdpr"
+              checked={gdprConsent}
+              onCheckedChange={(checked) => setGdprConsent(checked as boolean)}
+              required
+            />
+            <Label htmlFor="gdpr" className="text-xs">
+              I consent to receiving updates and understand that my data will be processed in
+              accordance with the Privacy Policy. I can unsubscribe at any time.
+            </Label>
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            Stay updated with our latest features and token launch details.
+          </p>
+        </motion.form>
       </div>
-      <div className="flex items-center space-x-2">
-        <Checkbox
-          id="gdpr"
-          checked={gdprConsent}
-          onCheckedChange={(checked) => setGdprConsent(checked as boolean)}
-          required
-        />
-        <Label htmlFor="gdpr" className="text-sm text-gray-600">
-          I consent to receiving updates and understand that my data will be processed in accordance
-          with the Privacy Policy. I can unsubscribe at any time.
-        </Label>
-      </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400">
-        Stay updated with our latest features and token launch details.
-      </p>
-    </form>
+    </section>
   );
 }

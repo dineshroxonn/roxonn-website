@@ -1,3 +1,5 @@
+'use client';
+
 import { SectionsWrapper } from '@/components/sections-wrapper';
 
 export default function Home() {

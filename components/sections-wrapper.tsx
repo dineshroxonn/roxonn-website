@@ -13,20 +13,20 @@ const HeroSection = dynamic(
   }
 );
 
-const AboutSection = dynamic(
-  () => import('@/components/sections/about').then((mod) => mod.AboutSection),
-  {
-    loading: () => (
-      <div className="min-h-[50vh] flex items-center justify-center">Loading About...</div>
-    ),
-  }
-);
-
 const ServicesSection = dynamic(
   () => import('@/components/sections/services').then((mod) => mod.ServicesSection),
   {
     loading: () => (
       <div className="min-h-[50vh] flex items-center justify-center">Loading Services...</div>
+    ),
+  }
+);
+
+const HowItWorksSection = dynamic(
+  () => import('@/components/sections/how-it-works').then((mod) => mod.HowItWorksSection),
+  {
+    loading: () => (
+      <div className="min-h-[50vh] flex items-center justify-center">Loading How It Works...</div>
     ),
   }
 );
@@ -89,34 +89,30 @@ const SubscribeForm = dynamic(
   () => import('@/components/ui/subscribe-form').then((mod) => mod.SubscribeForm),
   {
     loading: () => (
-      <div className="min-h-[20vh] flex items-center justify-center">Loading Subscribe Form...</div>
+      <div className="min-h-[50vh] flex items-center justify-center">Loading Subscribe...</div>
     ),
   }
 );
 
-export function SectionsWrapper() {
+interface SectionsWrapperProps {
+  children?: React.ReactNode;
+}
+
+export function SectionsWrapper({ children }: SectionsWrapperProps) {
   return (
-    <Suspense
-      fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}
-    >
-      <HeroSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <TokenomicsSection />
-      <GovernanceSection />
-      <StakingSection />
-      <RoadmapSection />
-      <AboutSection />
-      <ContactSection />
-      {/* Email Subscription Section */}
-      <section className="py-20 relative">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-8 gradient-text">Stay Updated</h2>
-          <div className="glass-panel p-8">
-            <SubscribeForm />
-          </div>
-        </div>
-      </section>
-    </Suspense>
+    <div className="flex flex-col gap-0">
+      <Suspense fallback={<div>Loading...</div>}>
+        <HeroSection />
+        <ServicesSection />
+        <ProjectsSection />
+        <TokenomicsSection />
+        <GovernanceSection />
+        <StakingSection />
+        <RoadmapSection />
+        <ContactSection />
+        <HowItWorksSection />
+        <SubscribeForm />
+      </Suspense>
+    </div>
   );
 }

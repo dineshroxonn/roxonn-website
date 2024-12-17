@@ -206,58 +206,13 @@ export function ServicesSection() {
             >
               <a
                 href="#join-us"
-                className="bg-white/90 dark:bg-white/10 text-zinc-900 dark:text-white border border-zinc-200 dark:border-white/20 px-8 py-3 rounded-lg hover:bg-white dark:hover:bg-white/20 transition-all duration-200 inline-block"
+                className="glass-panel px-6 py-3 inline-flex items-center hover-glow"
               >
                 {showTechnical ? 'Start Contributing' : 'Start Helping'}
               </a>
             </motion.div>
           </motion.div>
         </AnimatePresence>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16 mt-20"
-        >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">How It Works</h2>
-          <p className="text-xl text-black/80 dark:text-white/80">
-            Learn how to contribute and earn ROXN tokens
-          </p>
-        </motion.div>
-
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="glass-card p-6 rounded-xl mb-8"
-          >
-            <h3 className="text-xl font-semibold mb-4">{contributionFlow.title}</h3>
-            <p className="text-black/70 dark:text-white/70 mb-8">{contributionFlow.description}</p>
-
-            <div className="relative">
-              <div className="absolute left-4 top-0 h-full w-0.5 bg-gray-700" />
-              <div className="space-y-8">
-                {contributionFlow.steps.map((step, stepIndex) => {
-                  const Icon = step.icon;
-                  return (
-                    <div key={stepIndex} className="relative flex items-start gap-4">
-                      <div className="relative z-10 rounded-full p-2 bg-gray-800">
-                        <Icon className="w-5 h-5 text-[#00C2FF]" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">{step.title}</h4>
-                        <p className="text-sm text-gray-400">{step.description}</p>
-                        {step.reward && <div className="mt-2 text-[#00C2FF]">+{step.reward}</div>}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
-        </div>
       </div>
     </section>
   );

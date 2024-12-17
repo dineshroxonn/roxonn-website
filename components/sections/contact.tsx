@@ -309,17 +309,17 @@ export function ContactSection() {
           <div className="bg-black/5 dark:bg-white/5 rounded-lg p-4">
             <p className="text-sm text-black/70 dark:text-white/70">
               {selectedCategory === 'project' &&
-                'Share your vision and we&apos;ll help bring it to life through our decentralized development platform.'}
+                "Share your vision and we'll help bring it to life through our development platform."}
               {selectedCategory === 'technical' &&
-                'Share your technical expertise and how you&apos;d like to contribute to our ecosystem.'}
+                "Share your technical expertise and how you'd like to contribute to our projects."}
               {selectedCategory === 'general' &&
-                'We&apos;d love to hear from you. Send us your questions or feedback.'}
+                "We'd love to hear from you. Send us your questions or feedback."}
             </p>
           </div>
 
           <button
             type="submit"
-            className="w-full glass-panel py-3 flex items-center justify-center space-x-2 hover-glow"
+            className="w-full inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-200 gap-2"
           >
             <span>Submit {selectedCategory === 'project' ? 'Project' : 'Message'}</span>
             <Send className="w-4 h-4" />
@@ -332,10 +332,13 @@ export function ContactSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-12 text-center"
         >
-          <div className="inline-flex items-center space-x-2 text-black/70 dark:text-white/70">
+          <a
+            href="mailto:connect@roxonn.com"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
             <Mail className="w-5 h-5" />
             <span>connect@roxonn.com</span>
-          </div>
+          </a>
         </motion.div>
       </div>
     </section>
