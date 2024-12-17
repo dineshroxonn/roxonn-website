@@ -164,7 +164,7 @@ export function ProjectsSection() {
         <div className="flex justify-center items-center gap-4 mt-8">
           <Link
             href="/contribute"
-            className="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-all duration-200"
+            className="glass-panel px-6 py-3 inline-flex items-center hover-glow"
           >
             View All Tasks
             <ArrowRight className="ml-2 w-4 h-4" />
@@ -172,8 +172,7 @@ export function ProjectsSection() {
           <Link
             href="https://github.com/Roxonn-FutureTech"
             target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 rounded-lg bg-card border border-border hover:bg-card/80 transition-all duration-200"
+            className="glass-panel px-6 py-3 inline-flex items-center hover-glow"
           >
             View All Projects
             <ArrowRight className="ml-2 w-4 h-4" />

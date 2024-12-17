@@ -1,34 +1,24 @@
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { ReactNode } from 'react';
 
-interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface CustomButtonProps {
+  children: ReactNode;
   variant?: 'primary' | 'secondary';
+  className?: string;
+  onClick?: () => void;
 }
 
-const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
-  ({ className, variant = 'primary', children, ...props }, ref) => {
-    return (
-      <Button
-        className={cn(
-          'px-8 py-3 font-medium transition-all duration-200 flex items-center justify-center gap-2 rounded-lg',
-          {
-            'bg-gradient-to-r from-[#4F46E5] via-[#9333EA] to-[#E11D48] hover:opacity-90 text-white shadow-lg':
-              variant === 'primary',
-            'bg-zinc-100 dark:bg-white/10 hover:bg-zinc-200 dark:hover:bg-white/20 text-zinc-900 dark:text-white border border-zinc-200 dark:border-white/20':
-              variant === 'secondary',
-          },
-          className
-        )}
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </Button>
-    );
-  }
-);
-
-CustomButton.displayName = 'CustomButton';
-
-export { CustomButton };
+export function CustomButton({
+  children,
+  variant = 'primary',
+  className = '',
+  onClick,
+}: CustomButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={`glass-panel px-6 py-3 inline-flex items-center hover-glow ${className}`}
+    >
+      {children}
+    </button>
+  );
+}
