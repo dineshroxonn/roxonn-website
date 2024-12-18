@@ -21,25 +21,21 @@ export class SubscriptionService {
       gdprConsent,
     };
 
-    await dynamoDB
-      .put({
-        TableName: TABLE_NAME,
-        Item: subscription,
-        ConditionExpression: 'attribute_not_exists(email)',
-      })
-      .promise();
+    await dynamoDB.put({
+      TableName: TABLE_NAME,
+      Item: subscription,
+      ConditionExpression: 'attribute_not_exists(email)',
+    });
 
     await this.sendConfirmationEmail(email, confirmationToken);
   }
 
   static async confirm(token: string): Promise<void> {
-    const result = await dynamoDB
-      .scan({
-        TableName: TABLE_NAME,
-        FilterExpression: 'confirmationToken = :token',
-        ExpressionAttributeValues: { ':token': token },
-      })
-      .promise();
+    const result = await dynamoDB.scan({
+      TableName: TABLE_NAME,
+      FilterExpression: 'confirmationToken = :token',
+      ExpressionAttributeValues: { ':token': token },
+    });
 
     if (!result.Items || result.Items.length === 0) {
       throw new Error('Invalid confirmation token');
@@ -47,27 +43,23 @@ export class SubscriptionService {
 
     const subscription = result.Items[0] as Subscription;
 
-    await dynamoDB
-      .update({
-        TableName: TABLE_NAME,
-        Key: { email: subscription.email },
-        UpdateExpression: 'SET confirmed = :confirmed, updatedAt = :updatedAt',
-        ExpressionAttributeValues: {
-          ':confirmed': true,
-          ':updatedAt': new Date().toISOString(),
-        },
-      })
-      .promise();
+    await dynamoDB.update({
+      TableName: TABLE_NAME,
+      Key: { email: subscription.email },
+      UpdateExpression: 'SET confirmed = :confirmed, updatedAt = :updatedAt',
+      ExpressionAttributeValues: {
+        ':confirmed': true,
+        ':updatedAt': new Date().toISOString(),
+      },
+    });
   }
 
   static async unsubscribe(token: string): Promise<void> {
-    const result = await dynamoDB
-      .scan({
-        TableName: TABLE_NAME,
-        FilterExpression: 'unsubscribeToken = :token',
-        ExpressionAttributeValues: { ':token': token },
-      })
-      .promise();
+    const result = await dynamoDB.scan({
+      TableName: TABLE_NAME,
+      FilterExpression: 'unsubscribeToken = :token',
+      ExpressionAttributeValues: { ':token': token },
+    });
 
     if (!result.Items || result.Items.length === 0) {
       throw new Error('Invalid unsubscribe token');
@@ -75,12 +67,10 @@ export class SubscriptionService {
 
     const subscription = result.Items[0] as Subscription;
 
-    await dynamoDB
-      .delete({
-        TableName: TABLE_NAME,
-        Key: { email: subscription.email },
-      })
-      .promise();
+    await dynamoDB.delete({
+      TableName: TABLE_NAME,
+      Key: { email: subscription.email },
+    });
   }
 
   private static async sendConfirmationEmail(email: string, token: string): Promise<void> {
@@ -106,6 +96,6 @@ export class SubscriptionService {
       },
     };
 
-    await ses.sendEmail(params).promise();
+    await ses.sendEmail(params);
   }
 }

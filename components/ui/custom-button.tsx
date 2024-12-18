@@ -1,24 +1,32 @@
-import { ReactNode } from 'react';
+import * as React from 'react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
-interface CustomButtonProps {
-  children: ReactNode;
-  variant?: 'primary' | 'secondary';
+interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'secondary';
+  size?: 'default' | 'sm' | 'lg';
   className?: string;
-  onClick?: () => void;
 }
 
 export function CustomButton({
-  children,
-  variant = 'primary',
-  className = '',
-  onClick,
+  className,
+  variant = 'default',
+  size = 'default',
+  ...props
 }: CustomButtonProps) {
   return (
-    <button
-      onClick={onClick}
-      className={`glass-panel px-6 py-3 inline-flex items-center hover-glow ${className}`}
-    >
-      {children}
-    </button>
+    <Button
+      className={cn(
+        'font-medium transition-all duration-200',
+        variant === 'default' &&
+          'bg-gradient-to-r from-[#00C2FF] to-[#7000FF] hover:from-[#00C2FF]/90 hover:to-[#7000FF]/90',
+        variant === 'secondary' &&
+          'bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100',
+        className
+      )}
+      variant={variant}
+      size={size}
+      {...props}
+    />
   );
 }

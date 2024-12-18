@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 
@@ -23,10 +24,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster />
+          <TooltipProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

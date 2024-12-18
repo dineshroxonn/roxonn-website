@@ -232,7 +232,7 @@ export function HeroSection() {
               {currentContent.buttons.map((button, index) => (
                 <Link key={index} href={button.href}>
                   <CustomButton
-                    variant={button.primary ? 'primary' : 'secondary'}
+                    variant={button.primary ? 'default' : 'secondary'}
                     className={`w-full sm:w-auto text-lg px-8 py-3 ${
                       button.primary ? 'shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30' : ''
                     }`}

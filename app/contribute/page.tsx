@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GitPullRequest, Search, GitBranch, Clock } from 'lucide-react';
 import Link from 'next/link';
-import { fetchGitHubIssues, type GitHubIssue } from '@/lib/github';
+import { fetchGitHubIssues, type GitHubIssue } from '@/lib/services/github';
 import { useDebounce } from '@/hooks/useDebounce';
 
 export default function ContributePage() {
