@@ -52,16 +52,24 @@ const tokenDistribution = [
   },
 ];
 
+type TokenMetrics = {
+  maxSupply: number;
+  currentSupply: number;
+  circulatingSupply: number;
+  rewardPool: number;
+};
+
 export function TokenomicsSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  const [metrics, setMetrics] = useState({
-    totalSupply: '0',
-    circulatingSupply: '0',
-    rewardPool: '0',
+  const [metrics, setMetrics] = useState<TokenMetrics>({
+    maxSupply: 0,
+    currentSupply: 0,
+    circulatingSupply: 0,
+    rewardPool: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -82,9 +90,8 @@ export function TokenomicsSection() {
     getMetrics();
   }, []);
 
-  const formatNumber = (value: string) => {
-    const num = parseFloat(value);
-    return num.toLocaleString(undefined, { maximumFractionDigits: 0 });
+  const formatNumber = (value: number) => {
+    return value.toLocaleString(undefined, { maximumFractionDigits: 0 });
   };
 
   return (
@@ -99,125 +106,98 @@ export function TokenomicsSection() {
         >
           <h2 className="text-4xl font-bold mb-4 gradient-text">ROXN Token Economics</h2>
           <p className="text-xl text-black/80 dark:text-white/80">
-            Powering our decentralized ecosystem through fair token distribution and rewards
+            Empowering contributors through transparent and fair token distribution
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {tokenFeatures.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="glass-card text-center"
-            >
-              <div className="text-[#00C2FF] mb-4 flex justify-center">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-black/70 dark:text-white/70">{feature.description}</p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
+          >
+            <h3 className="text-2xl font-bold mb-2">Total Supply</h3>
+            <p className="text-4xl font-bold gradient-text">
+              {loading ? 'Loading...' : formatNumber(metrics.maxSupply)}
+            </p>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">ROXN Tokens</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
+          >
+            <h3 className="text-2xl font-bold mb-2">Circulating Supply</h3>
+            <p className="text-4xl font-bold gradient-text">
+              {loading ? 'Loading...' : formatNumber(metrics.circulatingSupply)}
+            </p>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">Tokens in Circulation</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
+          >
+            <h3 className="text-2xl font-bold mb-2">Reward Pool</h3>
+            <p className="text-4xl font-bold gradient-text">
+              {loading ? 'Loading...' : formatNumber(metrics.rewardPool)}
+            </p>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">Available for Contributors</p>
+          </motion.div>
         </div>
 
-        {/* Live Token Metrics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-        >
-          <div className="glass-card p-6 text-center">
-            <h3 className="text-xl font-semibold mb-2">Total Supply</h3>
-            <p className="text-3xl font-bold text-[#00C2FF]">
-              {loading ? (
-                <span className="animate-pulse">Loading...</span>
-              ) : (
-                `${formatNumber(metrics.totalSupply)} ROXN`
-              )}
-            </p>
-          </div>
-          <div className="glass-card p-6 text-center">
-            <h3 className="text-xl font-semibold mb-2">Circulating Supply</h3>
-            <p className="text-3xl font-bold text-[#00C2FF]">
-              {loading ? (
-                <span className="animate-pulse">Loading...</span>
-              ) : (
-                `${formatNumber(metrics.circulatingSupply)} ROXN`
-              )}
-            </p>
-          </div>
-          <div className="glass-card p-6 text-center">
-            <h3 className="text-xl font-semibold mb-2">Reward Pool</h3>
-            <p className="text-3xl font-bold text-[#00C2FF]">
-              {loading ? (
-                <span className="animate-pulse">Loading...</span>
-              ) : (
-                `${formatNumber(metrics.rewardPool)} ROXN`
-              )}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Token Distribution Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="glass-card p-8 mb-16"
-        >
-          <h3 className="text-2xl font-semibold mb-8">Token Distribution</h3>
-          <div className="space-y-6">
-            {tokenDistribution.map((item, index) => (
-              <div key={index}>
-                <div className="flex justify-between mb-2">
-                  <span className="text-black/90 dark:text-white/90">{item.category}</span>
-                  <span className="text-[#00C2FF]">{item.percentage}%</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <h3 className="text-2xl font-bold mb-8">Token Features</h3>
+            <div className="grid grid-cols-1 gap-6">
+              {tokenFeatures.map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-start space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md"
+                >
+                  <div className="flex-shrink-0 gradient-text">{feature.icon}</div>
+                  <div>
+                    <h4 className="font-semibold mb-1">{feature.title}</h4>
+                    <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
+                  </div>
                 </div>
-                <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-2">
-                  <div
-                    className="bg-[#00C2FF] h-full rounded-full"
-                    style={{ width: `${item.percentage}%` }}
-                  />
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <h3 className="text-2xl font-bold mb-8">Token Distribution</h3>
+            <div className="space-y-4">
+              {tokenDistribution.map((item, index) => (
+                <div key={index}>
+                  <div className="flex justify-between mb-1">
+                    <span>{item.category}</span>
+                    <span className="font-semibold">{item.percentage}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                    <div
+                      className="bg-gradient-to-r from-primary to-primary/80 h-2.5 rounded-full"
+                      style={{ width: `${item.percentage}%` }}
+                    ></div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* How to Earn ROXN Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="glass-card p-8"
-        >
-          <h3 className="text-2xl font-semibold mb-6">How to Earn ROXN</h3>
-          <ul className="space-y-4">
-            <li className="flex items-center">
-              <div className="text-[#00C2FF] mr-3">•</div>
-              <span>Complete tasks and contribute to projects</span>
-            </li>
-            <li className="flex items-center">
-              <div className="text-[#00C2FF] mr-3">•</div>
-              <span>Participate in governance and voting</span>
-            </li>
-            <li className="flex items-center">
-              <div className="text-[#00C2FF] mr-3">•</div>
-              <span>Stake tokens for additional rewards</span>
-            </li>
-          </ul>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-12"
-        >
-          <a href="#join-us" className="glass-panel px-6 py-3 inline-flex items-center hover-glow">
-            Start Earning ROXN
-          </a>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
